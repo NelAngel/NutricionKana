@@ -1,34 +1,118 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Historal de Frutas</title>
-    <style>
-        ul {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: 10px;
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            padding: 5px;
-            border: 1px solid #ccc;
-            color: black; /* Letras en color negro */
-        }
-        li:before {
-            content: "·"; /* Agregar punto a cada fruta */
-            margin-right: 5px;
-        }
-        li a {
-            text-decoration: none;
-            color: inherit;
-        }
-    </style>
-</head>
-<body>
-    <h1>Historial de Frutas</h1>
-    <ul>
-        <li><a href="aguacate.html">Aguacate</a></li>
+    <head>
+        <title>Historal de Frutas</title>
+        <style>
+            ul {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 10px;
+                list-style: none;
+                padding: 0;
+            }
+            li {
+                padding: 5px;
+                /* border: 1px solid #ccc; Quitar esta línea */
+                color: black; /* Letras en color negro */
+            }
+            li:before {
+                content: "·"; /* Agregar punto a cada fruta */
+                margin-right: 5px;
+            }
+            li a {
+                text-decoration: none;
+                color: inherit;
+            }
+            h1 {
+                text-align: center;
+            }
+    
+            .image-text {
+                font-family: Arial, sans-serif;
+                margin: 0 auto; /* Centra el texto horizontalmente */
+                max-width: 600px; 
+            }
+    
+            .escalasizq {
+                float: left;
+                border-radius: 45px; 
+            }
+    
+            .escalasder {
+                border-radius: 45px; 
+                float: right;
+                clear: right; 
+            }
+    
+            .container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin: 20px;
+            }
+    
+            .image {
+                border-radius: 75px 15px; 
+                width: 100px;
+                height: 100px;
+                margin: 20px;
+                /* border: 1px solid red; Quitar esta línea */
+            }
+    
+            nav {
+                background-color: black;
+                padding: 10px 0;
+            }
+    
+            .menu {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+            }
+    
+            .menu li {
+                margin: 0 20px;
+            }
+    
+            .menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+    
+            .menu a:hover {
+                background-color: #555;
+                border-radius: 5px;
+            }
+    
+            .info-box {
+                background-color: #f0f0f0;
+                padding: 20px;
+                text-align: center;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="historial.html">Historial</a></li>
+                <li><a href="alibas.html">Alimentos Básicos</a></li>
+                <li><a href="#">Otro</a></li>
+                <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
+                <li><a href="#">Pacientes</a></li>
+            </ul>
+        </nav>
+        <h1>Historial de Frutas</h1>
+        <ul>
+        <li><a href="frutas/aguacate.html">Aguacate</a></li>
         <li><a href="#">Acerola</a></li>
         <li><a href="#">Açaí</a></li>
         <li><a href="#">Achachairú</a></li>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Historal de Frutas</title>
+        <style>
+            ul {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 10px;
+                list-style: none;
+                padding: 0;
+            }
+            li {
+                padding: 5px;
+                /* border: 1px solid #ccc; Quitar esta línea */
+                color: black; /* Letras en color negro */
+            }
+            li:before {
+                content: "·"; /* Agregar punto a cada fruta */
+                margin-right: 5px;
+            }
+            li a {
+                text-decoration: none;
+                color: inherit;
+            }
+            h1 {
+                text-align: center;
+            }
+    
+            .image-text {
+                font-family: Arial, sans-serif;
+                margin: 0 auto; /* Centra el texto horizontalmente */
+                max-width: 600px; 
+            }
+    
+            .escalasizq {
+                float: left;
+                border-radius: 45px; 
+            }
+    
+            .escalasder {
+                border-radius: 45px; 
+                float: right;
+                clear: right; 
+            }
+    
+            .container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin: 20px;
+            }
+    
+            .image {
+                border-radius: 75px 15px; 
+                width: 100px;
+                height: 100px;
+                margin: 20px;
+                /* border: 1px solid red; Quitar esta línea */
+            }
+    
+            nav {
+                background-color: black;
+                padding: 10px 0;
+            }
+    
+            .menu {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+            }
+    
+            .menu li {
+                margin: 0 20px;
+            }
+    
+            .menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+    
+            .menu a:hover {
+                background-color: #555;
+                border-radius: 5px;
+            }
+    
+            .info-box {
+                background-color: #f0f0f0;
+                padding: 20px;
+                text-align: center;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+                    /* Estilos del formulario */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos de la tabla */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: black;
+            color: white;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+            
+        </style>
+    </head>
+    
+    <body>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="historial.html">Historial</a></li>
+                <li><a href="alibas.html">Alimentos Básicos</a></li>
+                <li><a href="#">Otro</a></li>
+                <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
+                <li><a href="#">Pacientes</a></li>
+            </ul>
+        </nav>
+        <div class="form-container">
+            <h2>Ingrese los datos:</h2>
+            <form id="data-form">
+                <label class="form-label" for="nombre">Nombre:</label>
+                <input class="form-input" type="text" id="nombre" required>
+    
+                <label class="form-label" for="edad">Edad:</label>
+                <input class="form-input" type="number" id="edad" required>
+    
+                <label class="form-label" for="genero">Género:</label>
+                <input class="form-input" type="text" id="genero" required>
+    
+                <label class="form-label" for="talla">Talla:</label>
+                <input class="form-input" type="number" id="talla" required>
+    
+                <label class="form-label" for="nivel-actividad">Nivel de actividad física:</label>
+                <input class="form-input" type="text" id="nivel-actividad" required>
+    
+                <label class="form-label" for="peso-actual">Peso actual:</label>
+                <input class="form-input" type="number" id="peso-actual" required>
+    
+                <label class="form-label" for="peso-modificado">Peso modificado:</label>
+                <input class="form-input" type="number" id="peso-modificado" required>
+    
+                <label class="form-label" for="condiciones-salud">Condiciones de salud:</label>
+                <textarea class="form-input" id="condiciones-salud" required></textarea>
+    
+                <label class="form-label" for="requerimiento-agua">Requerimiento de agua:</label>
+                <input class="form-input" type="number" id="requerimiento-agua" required>
+    
+                <button class="form-button" type="button" onclick="agregarDatos()">Agregar</button>
+            </form>
+        </div>
+    
+        <table class="data-table" id="tabla-datos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Género</th>
+                    <th>Talla</th>
+                    <th>Nivel de actividad física</th>
+                    <th>Peso actual</th>
+                    <th>Peso modificado</th>
+                    <th>Condiciones de salud</th>
+                    <th>Requerimiento de agua</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los datos del formulario se agregarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    
+        <script>
+            function agregarDatos() {
+                const nombre = document.getElementById('nombre').value;
+                const edad = document.getElementById('edad').value;
+                const genero = document.getElementById('genero').value;
+                const talla = document.getElementById('talla').value;
+                const nivelActividad = document.getElementById('nivel-actividad').value;
+                const pesoActual = document.getElementById('peso-actual').value;
+                const pesoModificado = document.getElementById('peso-modificado').value;
+                const condicionesSalud = document.getElementById('condiciones-salud').value;
+                const requerimientoAgua = document.getElementById('requerimiento-agua').value;
+    
+                const tablaDatos = document.getElementById('tabla-datos').getElementsByTagName('tbody')[0];
+                const newRow = tablaDatos.insertRow(tablaDatos.rows.length);
+                const data = [nombre, edad, genero, talla, nivelActividad, pesoActual, pesoModificado, condicionesSalud, requerimientoAgua];
+    
+                for (let i = 0; i < data.length; i++) {
+                const cell = newRow.insertCell(i);
+                cell.innerHTML = data[i];
+            }
+
+            // Crear la celda para los botones y agregar los botones a la celda
+            const actionsCell = newRow.insertCell(data.length);
+            actionsCell.innerHTML = `
+                <button onclick="editarFila(this)">Editar</button>
+                <button onclick="actualizarFila(this)">Actualizar</button>
+                <button onclick="eliminarFila(this)">Eliminar</button>
+            `;
+        }
+
+        function actualizarFila(button) {
+            const row = button.parentNode.parentNode;
+            // Aquí puedes implementar la lógica para actualizar los datos de la fila
+            // Por ejemplo, puedes obtener los datos editados del formulario y actualizarlos en la tabla.
+        }
+
+        function eliminarFila(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+        </script>
+    </body>
+    </html>      
