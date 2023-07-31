@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Datos</title>
+    <style>
+        /* Estilos de la tabla */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            table-layout: fixed;
+            border: 1px solid #ccc; /* Añadimos borde a la tabla */
+            border-radius: 5px; /* Agregamos esquinas redondeadas */
+            overflow: hidden; /* Evitamos que los bordes redondeados se vean cortados */
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #62686e;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Estilos de la barra de navegación */
+        nav {
+            background-color: black;
+            padding: 10px 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu li {
+            margin: 0 20px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        /* Estilos adicionales para los botones de edición y eliminación */
+        .edit-button,
+        .delete-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+        }
+
+        .button-container {
+            margin-top: 10px;
+            float: right;
+        }
+
+        /* Estilo para el contenedor de la tabla */
+        .table-container {
+            width: 80%; /* Ancho máximo de la tabla */
+            margin: 20px auto; /* Centramos la tabla en la página */
+        }
+
+        /* Estilos para la barra de acciones */
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Alineamos los botones al extremo derecho */
+            padding: 5px; /* Agregamos un pequeño espacio entre los botones y el borde de la celda */
+        }
+
+        /* Espaciado entre los botones de acción */
+        .actions button {
+            margin-right: 5px;
+        }
+
+        /* Eliminamos el margen superior del contenedor de botones */
+        .button-container {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="historial.html">Historial</a></li>
+            <li><a href="alibas.html">Alimentos Básicos</a></li>
+            <li><a href="#">Otro</a></li>
+            <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+        </ul>
+    </nav>
+
+    
+    <div class="table-container">
+        <table id="data-table">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Sexo</th>
+                <th>Peso 1</th>
+                <th>Peso 2</th>
+                <th>Talla</th>
+                <th>Actividad Física</th>
+                <th>Condición</th>
+                <th>TMB</th>
+                <th>GET</th>
+                <th>Kcal requeridos</th>
+                <th class="actions">Acciones</th> <!-- Añadimos la clase "actions" para darle estilo a la barra de acciones -->
+            </tr>
+        </table>
+    </div>
+
+    <!-- ... (código anterior) ... -->
+
+    <script>
+        // Obtener los datos desde la URL y convertirlos de nuevo en un objeto
+        const urlParams = new URLSearchParams(window.location.search);
+        const datosString = urlParams.get('datos');
+        let datos = datosString ? JSON.parse(datosString) : null; // Si no hay datos, inicializamos como null
+
+        function mostrarDatosEnTabla() {
+            const tableBody = document.getElementById('data-table-body');
+            tableBody.innerHTML = ''; // Limpiamos el contenido actual de la tabla antes de volver a mostrar los datos
+
+            pacientes.forEach(datosPaciente => {
+                const newRow = tableBody.insertRow();
+
+                newRow.innerHTML = `
+                    <td><input class="edit-input" type="text" value="${datos.nombre}" disabled></td>
+                    <td><input class="edit-input" type="text" value="${datos.apellidos}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datos.edad}" disabled></td>
+                    <td><input class="edit-input" type="text" value="${datos.sexo}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datos.peso1}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datos.peso2}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datos.talla}" disabled></td>
+                    <td><input class="edit-input" type="text" value="${datos.actividadFisica}" disabled></td>
+                    <td><input class="edit-input" type="text" value="${datos.condicion}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datos.tmb}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datos.get}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datos.kcalRequeridos}" disabled></td>
+                    <td class="actions">
+                        <button class="edit-button" onclick="editarFila()">Editar</button>
+                        <button class="delete-button" onclick="confirmarEliminarFila()">Eliminar</button>
+                    </td>
+                `;
+            });
+        }
+
+        function editarFila() {
+            const inputs = document.querySelectorAll('.edit-input');
+            const editButton = document.querySelector('.edit-button');
+
+            if (editButton.innerText === 'Editar') {
+                // Habilitar la edición de los campos
+                inputs.forEach(input => {
+                    input.removeAttribute('disabled');
+                });
+                editButton.innerText = 'Guardar';
+            } else {
+                // Guardar los cambios y deshabilitar los campos de edición
+                inputs.forEach(input => {
+                    input.setAttribute('disabled', 'true');
+                });
+                editButton.innerText = 'Editar';
+
+                // Obtener los nuevos valores y actualizar los datos
+                const newData = {
+                    nombre: inputs[0].value,
+                    apellidos: inputs[1].value,
+                    edad: inputs[2].value,
+                    sexo: inputs[3].value,
+                    peso1: inputs[4].value,
+                    peso2: inputs[5].value,
+                    talla: inputs[6].value,
+                    actividadFisica: inputs[7].value,
+                    condicion: inputs[8].value,
+                    tmb: inputs[9].value,
+                    get: inputs[10].value,
+                    kcalRequeridos: inputs[11].value
+                };
+
+                // Actualizar los datos en la URL
+                const newDataString = JSON.stringify(newData);
+                const newURL = window.location.pathname + `?datos=${encodeURIComponent(newDataString)}`;
+                window.history.replaceState({}, '', newURL);
+
+                // Actualizar la variable 'datos' con los nuevos valores
+                datos = newData;
+            }
+        }
+
+        function confirmarEliminarFila() {
+            const deleteDialog = document.getElementById('delete-dialog');
+            deleteDialog.style.display = 'block';
+        }
+
+        function eliminarFila() {
+            const deleteDialog = document.getElementById('delete-dialog');
+            const tableToDelete = document.getElementById('table-to-delete').value;
+            console.log('Eliminar tabla:', tableToDelete);
+            deleteDialog.style.display = 'none';
+        }
+
+        function cancelarEliminarFila() {
+            const deleteDialog = document.getElementById('delete-dialog');
+            deleteDialog.style.display = 'none';
+        }
+        function agregarPaciente() {
+        const nombre = document.getElementById('nombre').value;
+        const apellidos = document.getElementById('apellidos').value;
+        const edad = document.getElementById('edad').value;
+        // ... (obtener el valor de los demás campos del formulario)
+
+        // Crear un objeto con los datos del paciente
+        const datosPaciente = {
+            nombre: nombre,
+            apellidos: apellidos,
+            edad: edad,
+            // ... (asignar el valor de los demás campos del formulario al objeto)
+        };
+
+        // Agregar el paciente a la tabla
+        agregarFila(datosPaciente);
+
+        // Limpiar los campos del formulario después de agregar el paciente
+        document.getElementById('nombre').value = '';
+        document.getElementById('apellidos').value = '';
+        document.getElementById('edad').value = '';
+        // ... (limpiar los demás campos del formulario)
+    }
+
+        mostrarDatosEnTabla();
+    </script>
+</body>
+</html>

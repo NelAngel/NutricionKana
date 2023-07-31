@@ -1,120 +1,41 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Historal de Frutas</title>
-        <style>
-            ul {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                grid-gap: 10px;
-                list-style: none;
-                padding: 0;
-            }
-            li {
-                padding: 5px;
-                /* border: 1px solid #ccc; Quitar esta línea */
-                color: black; /* Letras en color negro */
-            }
-            li:before {
-                content: "·"; /* Agregar punto a cada fruta */
-                margin-right: 5px;
-            }
-            li a {
-                text-decoration: none;
-                color: inherit;
-            }
-            h1 {
-                text-align: center;
-            }
-    
-            .image-text {
-                font-family: Arial, sans-serif;
-                margin: 0 auto; /* Centra el texto horizontalmente */
-                max-width: 600px; 
-            }
-    
-            .escalasizq {
-                float: left;
-                border-radius: 45px; 
-            }
-    
-            .escalasder {
-                border-radius: 45px; 
-                float: right;
-                clear: right; 
-            }
-    
-            .container {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                margin: 20px;
-            }
-    
-            .image {
-                border-radius: 75px 15px; 
-                width: 100px;
-                height: 100px;
-                margin: 20px;
-                /* border: 1px solid red; Quitar esta línea */
-            }
-    
-            nav {
-                background-color: black;
-                padding: 10px 0;
-            }
-    
-            .menu {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-            }
-    
-            .menu li {
-                margin: 0 20px;
-            }
-    
-            .menu a {
-                color: white;
-                text-decoration: none;
-                font-size: 18px;
-            }
-    
-            .menu a:hover {
-                background-color: #555;
-                border-radius: 5px;
-            }
-    
-            .info-box {
-                background-color: #f0f0f0;
-                padding: 20px;
-                text-align: center;
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-            }
-                    /* Estilos del formulario */
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos</title>
+    <style>
+        /* Estilos del formulario */
+        body {
+            font-family: Arial, sans-serif;
             background-color: #f0f0f0;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
         .form-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            color: #555;
         }
 
         .form-input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -123,143 +44,191 @@
             display: block;
             width: 100%;
             padding: 10px;
-            background-color: black;
-            color: white;
+            background-color: #000000;
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
         }
 
-        /* Estilos de la tabla */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
+        .form-button:hover {
+            background-color: #0056b3;
         }
 
-        .data-table th,
-        .data-table td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-
-        .data-table th {
+        /* Estilos de la barra de navegación */
+        nav {
             background-color: black;
+            padding: 10px 0;
+            font-family: Georgia, 'Times New Roman', Times, serif; /* Cambio del tipo de fuente para la barra de navegación */
+        }
+
+        .menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu li {
+            margin: 0 20px;
+        }
+
+        .menu a {
             color: white;
+            text-decoration: none;
+            font-size: 18px;
         }
 
-        .data-table tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .menu a:hover {
+            background-color: #555;
+            border-radius: 5px;
         }
+
+        /* Estilos adicionales proporcionados */
+
     </style>
-            
-        </style>
-    </head>
-    
-    <body>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="historial.html">Historial</a></li>
-                <li><a href="alibas.html">Alimentos Básicos</a></li>
-                <li><a href="#">Otro</a></li>
-                <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
-                <li><a href="#">Pacientes</a></li>
-            </ul>
-        </nav>
-        <div class="form-container">
-            <h2>Ingrese los datos:</h2>
-            <form id="data-form">
-                <label class="form-label" for="nombre">Nombre:</label>
-                <input class="form-input" type="text" id="nombre" required>
-    
-                <label class="form-label" for="edad">Edad:</label>
-                <input class="form-input" type="number" id="edad" required>
-    
-                <label class="form-label" for="genero">Género:</label>
-                <input class="form-input" type="text" id="genero" required>
-    
-                <label class="form-label" for="talla">Talla:</label>
-                <input class="form-input" type="number" id="talla" required>
-    
-                <label class="form-label" for="nivel-actividad">Nivel de actividad física:</label>
-                <input class="form-input" type="text" id="nivel-actividad" required>
-    
-                <label class="form-label" for="peso-actual">Peso actual:</label>
-                <input class="form-input" type="number" id="peso-actual" required>
-    
-                <label class="form-label" for="peso-modificado">Peso modificado:</label>
-                <input class="form-input" type="number" id="peso-modificado" required>
-    
-                <label class="form-label" for="condiciones-salud">Condiciones de salud:</label>
-                <textarea class="form-input" id="condiciones-salud" required></textarea>
-    
-                <label class="form-label" for="requerimiento-agua">Requerimiento de agua:</label>
-                <input class="form-input" type="number" id="requerimiento-agua" required>
-    
-                <button class="form-button" type="button" onclick="agregarDatos()">Agregar</button>
-            </form>
-        </div>
-    
-        <table class="data-table" id="tabla-datos">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Edad</th>
-                    <th>Género</th>
-                    <th>Talla</th>
-                    <th>Nivel de actividad física</th>
-                    <th>Peso actual</th>
-                    <th>Peso modificado</th>
-                    <th>Condiciones de salud</th>
-                    <th>Requerimiento de agua</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Los datos del formulario se agregarán aquí dinámicamente -->
-            </tbody>
-        </table>
-    
-        <script>
-            function agregarDatos() {
-                const nombre = document.getElementById('nombre').value;
-                const edad = document.getElementById('edad').value;
-                const genero = document.getElementById('genero').value;
-                const talla = document.getElementById('talla').value;
-                const nivelActividad = document.getElementById('nivel-actividad').value;
-                const pesoActual = document.getElementById('peso-actual').value;
-                const pesoModificado = document.getElementById('peso-modificado').value;
-                const condicionesSalud = document.getElementById('condiciones-salud').value;
-                const requerimientoAgua = document.getElementById('requerimiento-agua').value;
-    
-                const tablaDatos = document.getElementById('tabla-datos').getElementsByTagName('tbody')[0];
-                const newRow = tablaDatos.insertRow(tablaDatos.rows.length);
-                const data = [nombre, edad, genero, talla, nivelActividad, pesoActual, pesoModificado, condicionesSalud, requerimientoAgua];
-    
-                for (let i = 0; i < data.length; i++) {
-                const cell = newRow.insertCell(i);
-                cell.innerHTML = data[i];
-            }
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="historial.html">Historial</a></li>
+            <li><a href="alibas.html">Alimentos Básicos</a></li>
+            <li><a href="#">Otro</a></li>
+            <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="tabla.html">Tablas</a></li>
+        </ul>
+    </nav>
 
-            // Crear la celda para los botones y agregar los botones a la celda
-            const actionsCell = newRow.insertCell(data.length);
-            actionsCell.innerHTML = `
-                <button onclick="editarFila(this)">Editar</button>
-                <button onclick="actualizarFila(this)">Actualizar</button>
-                <button onclick="eliminarFila(this)">Eliminar</button>
-            `;
-        }
+    <div class="form-container">
+        <h2>Ingrese los datos:</h2>
+        <form id="data-form">
+            <label class="form-label" for="nombre">Nombre:</label>
+            <input class="form-input" type="text" id="nombre" required>
 
-        function actualizarFila(button) {
-            const row = button.parentNode.parentNode;
-            // Aquí puedes implementar la lógica para actualizar los datos de la fila
-            // Por ejemplo, puedes obtener los datos editados del formulario y actualizarlos en la tabla.
-        }
+            <label class="form-label" for="apellidos">Apellidos:</label>
+            <input class="form-input" type="text" id="apellidos" required>
 
-        function eliminarFila(button) {
-            const row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
+            <label class="form-label" for="edad">Edad:</label>
+            <input class="form-input" type="number" id="edad" required>
+
+            <label class="form-label" for="sexo">Sexo:</label>
+            <input class="form-input" type="text" id="sexo" required>
+
+            <label class="form-label" for="peso-1">Peso 1:</label>
+            <input class="form-input" type="number" id="peso-1" required>
+
+            <label class="form-label" for="peso-2">Peso 2:</label>
+            <input class="form-input" type="number" id="peso-2" required>
+
+            <label class="form-label" for="talla">Talla:</label>
+            <input class="form-input" type="number" id="talla" required>
+
+            <label class="form-label" for="actividad-fisica">Actividad Física:</label>
+            <input class="form-input" type="text" id="actividad-fisica" required>
+
+            <label class="form-label" for="condicion">Condición:</label>
+            <input class="form-input" type="text" id="condicion" required>
+
+            <label class="form-label" for="tmb">TMB:</label>
+            <input class="form-input" type="number" id="tmb" required>
+
+            <label class="form-label" for="get">GET:</label>
+            <input class="form-input" type="number" id="get" required>
+
+            <label class="form-label" for="kcal-requeridos">Kcal requeridos:</label>
+            <input class="form-input" type="number" id="kcal-requeridos" required>
+
+            <button class="form-button" type="button" onclick="agregarDatos()">Agregar</button>
+        </form>
+    </div>
+
+    <script>
+        function agregarDatos() {
+            const nombre = document.getElementById('nombre').value;
+            const apellidos = document.getElementById('apellidos').value;
+            const edad = document.getElementById('edad').value;
+            const sexo = document.getElementById('sexo').value;
+            const peso1 = document.getElementById('peso-1').value;
+            const peso2 = document.getElementById('peso-2').value;
+            const talla = document.getElementById('talla').value;
+            const actividadFisica = document.getElementById('actividad-fisica').value;
+            const condicion = document.getElementById('condicion').value;
+            const tmb = document.getElementById('tmb').value;
+            const get = document.getElementById('get').value;
+            const kcalRequeridos = document.getElementById('kcal-requeridos').value;
+
+            // Crear un objeto con los datos ingresados
+            const datos = {
+                nombre,
+                apellidos,
+                edad,
+                sexo,
+                peso1,
+                peso2,
+                talla,
+                actividadFisica,
+                condicion,
+                tmb,
+                get,
+                kcalRequeridos
+            };
+
+            // Redirigir a la página "tabla.html" y pasar los datos como parámetro en la URL
+            window.location.href = `tabla.html?datos=${JSON.stringify(datos)}`;
         }
-        </script>
-    </body>
-    </html>      
+        let pacientes = []; // Lista para almacenar los datos de todos los pacientes
+
+    function agregarPaciente(event) {
+    event.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const apellidos = document.getElementById('apellidos').value;
+    const edad = document.getElementById('edad').value;
+    // ... (obtener el valor de los demás campos del formulario)
+
+    // Crear un objeto con los datos del paciente
+    const datosPaciente = {
+        nombre: nombre,
+        apellidos: apellidos,
+        edad: edad,
+        // ... (asignar el valor de los demás campos del formulario al objeto)
+    };
+    pacientes.push(datosPaciente);
+
+    // Limpiar los campos del formulario después de agregar el paciente
+    document.getElementById('nombre').value = '';
+    document.getElementById('apellidos').value = '';
+    document.getElementById('edad').value = '';
+    // ... (limpiar los demás campos del formulario)
+
+    // Actualizar la tabla con los nuevos datos
+    mostrarDatosEnTabla();
+}
+function mostrarDatosEnTabla() {
+            const tableBody = document.getElementById('data-table-body');
+            tableBody.innerHTML = ''; // Limpiamos el contenido actual de la tabla antes de volver a mostrar los datos
+
+            pacientes.forEach(datosPaciente => {
+                const newRow = tableBody.insertRow();
+
+                newRow.innerHTML = `
+                    <td><input class="edit-input" type="text" value="${datosPaciente.nombre}" disabled></td>
+                    <td><input class="edit-input" type="text" value="${datosPaciente.apellidos}" disabled></td>
+                    <td><input class="edit-input" type="number" value="${datosPaciente.edad}" disabled></td>
+                    <!-- Agrega aquí los demás campos del formulario -->
+                    <td class="actions">
+                        <button class="edit-button" onclick="editarFila()">Editar</button>
+                        <button class="delete-button" onclick="confirmarEliminarFila()">Eliminar</button>
+                    </td>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
+
