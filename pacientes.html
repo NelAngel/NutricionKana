@@ -1,234 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Datos</title>
-    <style>
-        /* Estilos del formulario */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-
-        .form-container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            color: #555;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .form-button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #000000;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        .form-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Estilos de la barra de navegación */
-        nav {
-            background-color: black;
-            padding: 10px 0;
-            font-family: Georgia, 'Times New Roman', Times, serif; /* Cambio del tipo de fuente para la barra de navegación */
-        }
-
-        .menu {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .menu li {
-            margin: 0 20px;
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .menu a:hover {
-            background-color: #555;
-            border-radius: 5px;
-        }
-
-        /* Estilos adicionales proporcionados */
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="styles1.css">
+  <title>ciencias de la Nutricion</title>
 </head>
 <body>
-    <nav>
-        <ul class="menu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="historial.html">Historial</a></li>
-            <li><a href="alibas.html">Alimentos Básicos</a></li>
-            <li><a href="#">Otro</a></li>
-            <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
-            <li><a href="pacientes.html">Pacientes</a></li>
-            <li><a href="tabla.html">Tablas</a></li>
-        </ul>
-    </nav>
+  <nav>
+      <ul class="menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="historial.html">Historial</a></li>
+          <li><a href="alibas.html">Alimentos Básicos</a></li>
+          <li><a href="#">Otro</a></li>
+          <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
+          <li><a href="pacientes.html">Pacientes</a></li>
+          <li> <a href="tabla.html">Tablas</a></li>
+      </ul>
+  </nav>
+  <style>
 
-    <div class="form-container">
-        <h2>Ingrese los datos:</h2>
-        <form id="data-form">
-            <label class="form-label" for="nombre">Nombre:</label>
-            <input class="form-input" type="text" id="nombre" required>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 16px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="myForm">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+      
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" required>
+      
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" required>
+      
+      <label for="sexo">Sexo:</label>
+      <input type="text" id="sexo" required>
+      
+      <label for="peso1">Peso 1:</label>
+      <input type="number" id="peso1" required>
+      
+      <label for="peso2">Peso 2:</label>
+      <input type="number" id="peso2" required>
+      
+      <label for="talla">Talla:</label>
+      <input type="number" id="talla" required>
+      
+      <label for="actividadFisica">Actividad física:</label>
+      <input type="text" id="actividadFisica" required>
+      
+      <label for="condicion">Condición:</label>
+      <input type="text" id="condicion" required>
+      
+      <!-- Aquí se agregaron los campos TMB, GET y Kcal requeridos -->
+      <label for="tmb">TMB (Tasa Metabólica Basal):</label>
+      <input type="number" id="tmb" required>
 
-            <label class="form-label" for="apellidos">Apellidos:</label>
-            <input class="form-input" type="text" id="apellidos" required>
+      <label for="get">GET (Gasto Energético Total):</label>
+      <input type="number" id="get" required>
 
-            <label class="form-label" for="edad">Edad:</label>
-            <input class="form-input" type="number" id="edad" required>
+      <label for="kcalRequeridos">Kcal requeridos:</label>
+      <input type="number" id="kcalRequeridos" required>
 
-            <label class="form-label" for="sexo">Sexo:</label>
-            <input class="form-input" type="text" id="sexo" required>
+      <input type="submit" value="Guardar">
+    </form>
+  </div>
 
-            <label class="form-label" for="peso-1">Peso 1:</label>
-            <input class="form-input" type="number" id="peso-1" required>
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      guardarDatos();
+    });
 
-            <label class="form-label" for="peso-2">Peso 2:</label>
-            <input class="form-input" type="number" id="peso-2" required>
+    function guardarDatos() {
+      const nombre = document.getElementById("nombre").value;
+      const apellidos = document.getElementById("apellidos").value;
+      const edad = document.getElementById("edad").value;
+      const sexo = document.getElementById("sexo").value;
+      const peso1 = document.getElementById("peso1").value;
+      const peso2 = document.getElementById("peso2").value;
+      const talla = document.getElementById("talla").value;
+      const actividadFisica = document.getElementById("actividadFisica").value;
+      const condicion = document.getElementById("condicion").value;
+      const tmb = document.getElementById("tmb").value;
+      const get = document.getElementById("get").value;
+      const kcalRequeridos = document.getElementById("kcalRequeridos").value;
 
-            <label class="form-label" for="talla">Talla:</label>
-            <input class="form-input" type="number" id="talla" required>
+      // Guardar los datos en localStorage
+      const datos = {
+        nombre,
+        apellidos,
+        edad,
+        sexo,
+        peso1,
+        peso2,
+        talla,
+        actividadFisica,
+        condicion,
+        tmb,
+        get,
+        kcalRequeridos,
+      };
 
-            <label class="form-label" for="actividad-fisica">Actividad Física:</label>
-            <input class="form-input" type="text" id="actividad-fisica" required>
+      const datosGuardados = localStorage.getItem("datos");
+      let datosArray = datosGuardados ? JSON.parse(datosGuardados) : [];
+      datosArray.push(datos);
 
-            <label class="form-label" for="condicion">Condición:</label>
-            <input class="form-input" type="text" id="condicion" required>
-
-            <label class="form-label" for="tmb">TMB:</label>
-            <input class="form-input" type="number" id="tmb" required>
-
-            <label class="form-label" for="get">GET:</label>
-            <input class="form-input" type="number" id="get" required>
-
-            <label class="form-label" for="kcal-requeridos">Kcal requeridos:</label>
-            <input class="form-input" type="number" id="kcal-requeridos" required>
-
-            <button class="form-button" type="button" onclick="agregarDatos()">Agregar</button>
-        </form>
-    </div>
-
-    <script>
-        function agregarDatos() {
-            const nombre = document.getElementById('nombre').value;
-            const apellidos = document.getElementById('apellidos').value;
-            const edad = document.getElementById('edad').value;
-            const sexo = document.getElementById('sexo').value;
-            const peso1 = document.getElementById('peso-1').value;
-            const peso2 = document.getElementById('peso-2').value;
-            const talla = document.getElementById('talla').value;
-            const actividadFisica = document.getElementById('actividad-fisica').value;
-            const condicion = document.getElementById('condicion').value;
-            const tmb = document.getElementById('tmb').value;
-            const get = document.getElementById('get').value;
-            const kcalRequeridos = document.getElementById('kcal-requeridos').value;
-
-            // Crear un objeto con los datos ingresados
-            const datos = {
-                nombre,
-                apellidos,
-                edad,
-                sexo,
-                peso1,
-                peso2,
-                talla,
-                actividadFisica,
-                condicion,
-                tmb,
-                get,
-                kcalRequeridos
-            };
-
-            // Redirigir a la página "tabla.html" y pasar los datos como parámetro en la URL
-            window.location.href = `tabla.html?datos=${JSON.stringify(datos)}`;
-        }
-        let pacientes = []; // Lista para almacenar los datos de todos los pacientes
-
-    function agregarPaciente(event) {
-    event.preventDefault();
-
-    const nombre = document.getElementById('nombre').value;
-    const apellidos = document.getElementById('apellidos').value;
-    const edad = document.getElementById('edad').value;
-    // ... (obtener el valor de los demás campos del formulario)
-
-    // Crear un objeto con los datos del paciente
-    const datosPaciente = {
-        nombre: nombre,
-        apellidos: apellidos,
-        edad: edad,
-        // ... (asignar el valor de los demás campos del formulario al objeto)
-    };
-    pacientes.push(datosPaciente);
-
-    // Limpiar los campos del formulario después de agregar el paciente
-    document.getElementById('nombre').value = '';
-    document.getElementById('apellidos').value = '';
-    document.getElementById('edad').value = '';
-    // ... (limpiar los demás campos del formulario)
-
-    // Actualizar la tabla con los nuevos datos
-    mostrarDatosEnTabla();
-}
-function mostrarDatosEnTabla() {
-            const tableBody = document.getElementById('data-table-body');
-            tableBody.innerHTML = ''; // Limpiamos el contenido actual de la tabla antes de volver a mostrar los datos
-
-            pacientes.forEach(datosPaciente => {
-                const newRow = tableBody.insertRow();
-
-                newRow.innerHTML = `
-                    <td><input class="edit-input" type="text" value="${datosPaciente.nombre}" disabled></td>
-                    <td><input class="edit-input" type="text" value="${datosPaciente.apellidos}" disabled></td>
-                    <td><input class="edit-input" type="number" value="${datosPaciente.edad}" disabled></td>
-                    <!-- Agrega aquí los demás campos del formulario -->
-                    <td class="actions">
-                        <button class="edit-button" onclick="editarFila()">Editar</button>
-                        <button class="delete-button" onclick="confirmarEliminarFila()">Eliminar</button>
-                    </td>
-                `;
-            });
-        }
-    </script>
+      localStorage.setItem("datos", JSON.stringify(datosArray));
+      alert("Los datos han sido guardados correctamente.");
+    }
+  </script>
 </body>
 </html>
-

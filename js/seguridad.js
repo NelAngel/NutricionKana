@@ -1,4 +1,3 @@
-// Función para comprobar las credenciales ingresadas
 function checkCredentials(event) {
     event.preventDefault();
 

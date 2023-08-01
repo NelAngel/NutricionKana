@@ -37,6 +37,9 @@
     nav {
         background-color: black;
         padding: 10px 0;
+        position: relative;
+        top: 0px; /* Cambia este valor para ajustar la posición vertical */
+        margin-bottom: 10px;
     }
 
     .menu {

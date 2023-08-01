@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles1.css">
-    <title>Tabla</title>
-</head>
+    <link rel="stylesheet" href="styles.css">
+    <title>ciencias de la Nutricion</title>
+</head> 
 <body>
-    <div>
-    <nav>
+    <nav class="top-nav">
         <ul class="menu">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="historial.html">Historial</a></li>
@@ -18,6 +17,8 @@
             <li><a href="pacientes.html">Pacientes</a></li>
         </ul>
     </nav>
+<body>
+
   <div class="container">
     <table>
       <tr>
@@ -40,11 +41,9 @@
         <!-- Aquí se mostrarán los datos y las casillas de verificación -->
       </tbody>
     </table>
-    </div>
-    <div class="button-container">
-        <button id="btnEditar">Editar</button>
-        <button onclick="eliminarDatos()">Eliminar</button>
-    </div>
+    <button id="btnEditar">Editar</button>
+    <button onclick="eliminarDatos()">Eliminar</button>
+  </div>
 
   <!-- Modal para editar datos -->
   <div id="modal" class="modal">
@@ -53,116 +52,91 @@
     </div>
   </div>
 </body>
-<style>
-    
+
+  <style>
+    /* Estilos generales */
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 0;
+      margin: 0; /* Eliminar el margen predeterminado del body */
+      padding: 0; /* Eliminar el padding predeterminado del body */
+      display: flex; /* Establecer el contenedor de nivel superior como un contenedor flexible */
+      justify-content: center; /* Centrar el contenido horizontalmente */
+      align-items: center; /* Centrar el contenido verticalmente */
+      min-height: 100vh; /* Establecer la altura mínima del body para que el contenido esté centrado en la pantalla */
     }
-    /* Resto del estilo */
-    
-    /* Estilos para la tabla y el contenedor de botones */
-    .button-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 20px; /* Agregar margen inferior */
+
+    .outer-container {
+      max-width: 800px;
+      margin: 20px; /* Agregar márgenes alrededor del contenedor */
     }
-    
-    #btnEditar {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        margin-right: 10px;
-        cursor: pointer;
-        border-radius: 4px;
+
+    .container {
+      padding: 20px;
+      box-sizing: border-box; /* Considerar el padding en el ancho del contenedor */
+      width: 100%; /* Asegurarse de que el contenedor ocupe el 100% del ancho disponible */
+      background-color: #f2f2f2; /* Color de fondo para visualizar los márgenes */
     }
     
-    #btnEditar:disabled {
-        background-color: #bfbfbf;
-        cursor: not-allowed;
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
     }
-    
-    #btnEditar:hover {
-        background-color: #45a049;
-    }
-    
-    button {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 4px;
-    }
-    
-    button:hover {
-        background-color: #d32f2f;
-    }
-    
+
     /* Estilos para la tabla */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px; /* Agregar margen arriba */
     }
-    
-    th,
-    td {
+
+    th, td {
       padding: 10px;
       text-align: left;
       border-bottom: 1px solid #ddd;
     }
-    
+
     th {
       background-color: #f2f2f2;
     }
-    
+
     tbody tr:nth-child(even) {
       background-color: #f2f2f2;
     }
-    
-    /* Estilos para los botones */
-    .button-container {
-      display: flex;
-      justify-content: center; /* Cambiar a "center" para centrar los botones horizontalmente */
-      margin-top: 20px;
-    }
-    
+
+    /* Estilos para el botón de editar */
     #btnEditar {
-      background-color: #4caf50;
+      background-color: #4CAF50;
       color: white;
       border: none;
       padding: 10px 20px;
-      margin-right: 10px;
+      margin-bottom: 10px;
       cursor: pointer;
       border-radius: 4px;
     }
-    
+
     #btnEditar:disabled {
       background-color: #bfbfbf;
       cursor: not-allowed;
     }
-    
+
     #btnEditar:hover {
       background-color: #45a049;
     }
-    
+
+    /* Estilos para el botón de eliminar */
     button {
       background-color: #f44336;
       color: white;
       border: none;
       padding: 10px 20px;
+      margin-bottom: 10px;
       cursor: pointer;
       border-radius: 4px;
     }
-    
+
     button:hover {
       background-color: #d32f2f;
     }
-    
+
     /* Estilos para el modal */
     .modal {
       display: none;
@@ -175,7 +149,7 @@
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.4);
     }
-    
+
     .modal-content {
       background-color: #fefefe;
       margin: 15% auto;
@@ -183,40 +157,40 @@
       border: 1px solid #888;
       width: 80%;
     }
-    
+
     .close {
       color: #aaa;
       float: right;
       font-size: 28px;
       font-weight: bold;
     }
-    
+
     .close:hover,
     .close:focus {
       color: black;
       text-decoration: none;
       cursor: pointer;
     }
-    
+
     /* Estilos para el formulario dentro del modal */
     form {
       display: grid;
       grid-gap: 10px;
     }
-    
+
     label {
       font-weight: bold;
     }
-    
+
     input {
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 4px;
       width: 100%;
     }
-    
+
     button[type="button"] {
-      background-color: #4caf50;
+      background-color: #4CAF50;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -224,25 +198,14 @@
       cursor: pointer;
       border-radius: 4px;
     }
-    
+
     button[type="button"]:hover {
       background-color: #45a049;
     }
-    
-    /* Estilos para la barra de navegación */
-    .menu a {
-        font-family: Ar; /* Cambiar la fuente aquí */
-        /* Agrega aquí la fuente que desees */
-    }
-    nav {
-    background-color: black;
-    padding: 9px 0;
-    position: relative;
-    top: -10px; /* Cambia este valor para ajustar la posición vertical */
-    margin-bottom: 10px;
-}
+   
+  </style>
 
-</style>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
       mostrarDatos();
@@ -271,7 +234,6 @@
             <td>${datos.tmb}</td>
             <td>${datos.get}</td>
             <td>${datos.kcalRequeridos}</td>
-            
             <td><input type="checkbox" name="editar" value="${index}"></td>
             <td><input type="checkbox" name="eliminar" value="${index}"></td>
           `;
