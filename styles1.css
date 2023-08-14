@@ -75,3 +75,22 @@ nav {
     bottom: 0;
     width: 100%;
 }
+
+.menu li {
+    position: relative;
+    display: inline-block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #000000;
+    padding: 0;
+    list-style: none;
+}
+
+.menu li:hover .submenu {
+    display: block;
+}

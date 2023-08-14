@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .result {
+            font-weight: bold;
+            color: #FF4500;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+        .container {
+            /* Estilos para centrar el contenedor */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+    </style>
+    <title>MIFLIN</title>
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <form id="calculator-form">
+            <table>
+                <tr>
+                    <th>Peso (kg)</th>
+                    <td><input type="number" id="peso" step="0.01" required></td>
+                </tr>
+                <tr>
+                    <th>Talla (cm)</th>
+                    <td><input type="number" id="talla" step="0.01" required></td>
+                </tr>
+                <tr>
+                    <th>Edad</th>
+                    <td><input type="number" id="edad" required></td>
+                </tr>
+                <tr>
+                    <th>Tasa Metabólica Basal (kcal)</th>
+                    <td><input type="number" id="tmb" step="1" readonly></td>
+                </tr>
+                <tr>
+                    <th>Actividad Física (decimal)</th>
+                    <td><input type="number" id="actividad-fisica" step="0.01" required></td>
+                </tr>
+                <tr>
+                    <th>Efecto Termogénico (kcal)</th>
+                    <td><input type="number" id="efecto-termogenico" step="0.01" readonly></td>
+                </tr>
+                <tr>
+                    <th>Energía Adicional por Trimestre</th>
+                    <td>
+                        <select id="energia-adicional">
+                            <option value="85">1er Trimestre (85 kcal)</option>
+                            <option value="285">2do Trimestre (285 kcal)</option>
+                            <option value="475">3er Trimestre (475 kcal)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Requerimiento de Energía Diaria</th>
+                    <td><input type="number" id="requerimiento-energia" step="0.01" readonly></td>
+                </tr>
+            </table>
+            <button type="button" onclick="calcularRequerimientos()">Calcular</button>
+        </form>
+    </div>
+
+<script>
+        function calcularRequerimientos() {
+            const peso = parseFloat(document.getElementById("peso").value);
+            const talla = parseFloat(document.getElementById("talla").value);
+            const edad = parseInt(document.getElementById("edad").value);
+            const actividadFisica = parseFloat(document.getElementById("actividad-fisica").value);
+            const energiaAdicional = parseFloat(document.getElementById("energia-adicional").value);
+
+            const tmb = Math.round((9.99 * peso) + (6.25 * talla) - (4.92 * edad) - 161);
+            document.getElementById("tmb").value = tmb;
+
+            const efectoTermogenico = tmb * 0.1;
+            document.getElementById("efecto-termogenico").value = efectoTermogenico.toFixed(2);
+
+            const requerimientoEnergia = (tmb * actividadFisica) + efectoTermogenico + energiaAdicional;
+            document.getElementById("requerimiento-energia").value = requerimientoEnergia.toFixed(2);
+        }
+    </script>
+</body>
+</html>
