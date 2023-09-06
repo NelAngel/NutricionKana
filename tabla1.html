@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de Datos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #addRow {
+            background-color: #28a745;
+        }
+
+        #addRow:hover {
+            background-color: #1b8133;
+        }
+
+        #saveData {
+            background-color: #dc3545;
+        }
+
+        #saveData:hover {
+            background-color: #c82333;
+        }
+
+        /* Estilo para las celdas editables */
+        .editing {
+            background-color: #FFFFE0;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Tabla de Datos</h1>
+    <table id="dataTable">
+        <tr>
+            <th>Nombre</th>
+            <th>Peso</th>
+            <th>% de grasa corporal</th>
+            <th>% masa corporal magra</th>
+            <th>Peso masa magra</th>
+            <th>Aplicación de fórmula de Cunningham</th>
+            <th>Predicción de GER</th>
+            <th>Acciones</th>
+        </tr>
+    </table>
+
+    <div>
+        <button id="addRow">Agregar Fila</button>
+        <button id="saveData">Guardar</button>
+    </div>
+
+    <script>
+        var editingRow = null;
+
+        // Función para agregar una fila a la tabla
+        function addRow() {
+            var table = document.getElementById("dataTable");
+            var newRow = table.insertRow(table.rows.length);
+            var cols = 7; // Número de columnas
+
+            for (var i = 0; i < cols; i++) {
+                var cell = newRow.insertCell(i);
+                cell.contentEditable = true;
+            }
+
+            var editButton = document.createElement("button");
+            editButton.innerHTML = "Editar";
+            editButton.onclick = function() {
+                if (editRow(newRow)) {
+                    editButton.innerHTML = "Guardar";
+                    editButton.onclick = function() {
+                        saveRow(newRow);
+                    };
+                }
+            };
+
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "Eliminar";
+            deleteButton.onclick = function() {
+                deleteRow(newRow);
+            };
+
+            var cell = newRow.insertCell(cols);
+            cell.appendChild(editButton);
+            cell.appendChild(deleteButton);
+        }
+
+        // Función para editar una fila
+        function editRow(row) {
+            if (editingRow && editingRow !== row) {
+                // Restaurar la fila previamente editada
+                var cells = editingRow.cells;
+                for (var i = 0; i < 7; i++) {
+                    cells[i].contentEditable = false;
+                    cells[i].classList.remove("editing");
+                }
+
+                var editButton = editingRow.querySelector("button");
+                editButton.innerHTML = "Editar";
+                editButton.onclick = function() {
+                    if (editRow(editingRow)) {
+                        editButton.innerHTML = "Guardar";
+                        editButton.onclick = function() {
+                            saveRow(editingRow);
+                        };
+                    }
+                };
+            }
+
+            var cells = row.cells;
+            for (var i = 0; i < 7; i++) {
+                cells[i].contentEditable = true;
+                cells[i].classList.add("editing");
+            }
+
+            var editButton = row.querySelector("button");
+            editButton.innerHTML = "Guardar";
+            editButton.onclick = function() {
+                saveRow(row);
+            };
+
+            editingRow = row;
+            return true;
+        }
+
+        // Función para guardar una fila editada
+        function saveRow(row) {
+            var cells = row.cells;
+            for (var i = 0; i < 7; i++) {
+                cells[i].contentEditable = false;
+                cells[i].classList.remove("editing");
+            }
+
+            var editButton = row.querySelector("button");
+            editButton.innerHTML = "Editar";
+            editButton.onclick = function() {
+                if (editRow(row)) {
+                    editButton.innerHTML = "Guardar";
+                    editButton.onclick = function() {
+                        saveRow(row);
+                    };
+                }
+            };
+        }
+
+        // Función para eliminar una fila
+        function deleteRow(row) {
+            var table = document.getElementById("dataTable");
+            table.deleteRow(row.rowIndex);
+        }
+
+        // Agregar fila al hacer clic en el botón "Agregar Fila"
+        document.getElementById("addRow").addEventListener("click", addRow);
+
+        // Guardar datos en el almacenamiento local
+        document.getElementById("saveData").addEventListener("click", function() {
+            saveData();
+            alert("Datos guardados exitosamente.");
+        });
+
+        // Cargar datos desde el almacenamiento local
+        window.onload = function() {
+            var data = JSON.parse(localStorage.getItem("data")) || [];
+            var table = document.getElementById("dataTable");
+
+            for (var i = 0; i < data.length; i++) {
+                var row = table.insertRow(table.rows.length);
+                var rowData = data[i];
+
+                for (var j = 0; j < 7; j++) {
+                    var cell = row.insertCell(j);
+                    cell.innerHTML = rowData[j];
+                }
+
+                var editButton = document.createElement("button");
+                editButton.innerHTML = "Editar";
+                editButton.onclick = function() {
+                    if (editRow(row)) {
+                        editButton.innerHTML = "Guardar";
+                        editButton.onclick = function() {
+                            saveRow(row);
+                        };
+                    }
+                };
+
+                var deleteButton = document.createElement("button");
+                deleteButton.innerHTML = "Eliminar";
+                deleteButton.onclick = function() {
+                    deleteRow(row);
+                };
+
+                var cell = row.insertCell(7);
+                cell.appendChild(editButton);
+                cell.appendChild(deleteButton);
+            }
+        };
+
+        // Guardar datos en el almacenamiento local
+        function saveData() {
+            var table = document.getElementById("dataTable");
+            var data = [];
+
+            for (var i = 1; i < table.rows.length; i++) {
+                var rowData = [];
+                var row = table.rows[i];
+
+                for (var j = 0; j < 7; j++) {
+                    rowData.push(row.cells[j].innerHTML);
+                }
+
+                data.push(rowData);
+            }
+
+            localStorage.setItem("data", JSON.stringify(data));
+        }
+    </script>
+</body>
+</html>
+
