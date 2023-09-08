@@ -1,0 +1,198 @@
+/* Estilos generales para todos los elementos */
+* {
+  margin: 0;       /* Establece margen a 0 */
+  padding: 0;      /* Establece relleno a 0 */
+  box-sizing: border-box; /* Cambia el modelo de caja para incluir relleno y borde en el tamaño total */
+}
+
+/* Estilos para el elemento 'html' */
+html {
+  font-size: 65.5%; /* Tamaño de fuente base para facilitar el uso de 'em' */
+}
+
+/* Estilos para el cuerpo del documento */
+body {
+  font-family:Arial, Helvetica, sans-serif; /* Fuente para el texto del cuerpo */
+  background-color: #f0f0f0;    /* Color de fondo */
+  color: #333;                  /* Color del texto */
+}
+
+/* Estilos para la barra de navegación */
+nav {
+  background-color: transparent; /* Fondo de la barra de navegación */
+  padding: 10px 0;               /* Espaciado interior superior e inferior */
+  position: absolute;            /* Posicionamiento absoluto */
+  top: 0;                        /* Desde la parte superior */
+  left: 0;                       /* Desde la izquierda */
+  width: 100%;                  /* Ancho completo */
+  z-index: 2;                   /* Capa z-index para superponer */
+}
+
+/* Estilos para el menú de navegación */
+.menu {
+  list-style: none;             /* Sin viñetas en la lista */
+  margin: 0;                    /* Sin margen */
+  padding: 0;                   /* Sin relleno */
+  display: flex;                /* Mostrar como flexbox */
+  justify-content: flex-end;    /* Justificar el contenido al final */
+}
+
+/* Estilos para los elementos del menú */
+.menu li {
+  margin: 0 20px;               /* Margen horizontal */
+  position: relative;           /* Posición relativa */
+  display: inline-block;        /* Mostrar como elementos en línea */
+}
+
+/* Estilos para los enlaces del menú */
+.menu a {
+  color: #333;                 /* Color del texto del enlace */
+  text-decoration: none;       /* Sin decoración de texto (subrayado) */
+  font-size: 18px;             /* Tamaño de fuente */
+  transition: color 0.3s ease; /* Transición de color suave en hover */
+}
+
+/* Estilos para el hover de los enlaces del menú */
+.menu a:hover {
+  color: #ff4321;              /* Cambio de color en hover */
+  border-radius: 5px;          /* Borde redondeado */
+}
+
+/* Estilos para los submenús */
+.submenu {
+  display: none;                /* Ocultar submenús por defecto */
+  position: absolute;           /* Posición absoluta */
+  top: 100%;                   /* Desde la parte inferior del elemento padre */
+  right: 0;                      /* Desde la izquierda del elemento padre */
+  background-color: #fff;       /* Fondo del submenú */
+  padding: 0px;                /* Relleno interior del submenú */
+  list-style: none;             /* Sin viñetas en la lista */
+  border-radius: 5px;           /* Borde redondeado */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+  width: auto;  
+  text-align: left; 
+}
+.sub menu li{
+  margin-right: 20px;
+}
+/* Estilos para el hover de los enlaces dentro del submenú */
+.submenu li a:hover {
+  color: #ff4321;
+}
+/* Mostrar submenús al hacer hover en elementos del menú */
+.menu li:hover .submenu {
+  display: block;              /* Mostrar submenú en hover */
+}
+
+/* Estilos para los enlaces dentro de los submenús */
+.submenu li a {
+  padding: 10px 20px;           /* Relleno interior de los enlaces */
+  color: #333;                 /* Color del texto del enlace */
+  text-decoration: none;       /* Sin decoración de texto (subrayado) */
+  display: block;              /* Mostrar como bloque */
+  transition: color 0.3s ease; /* Transición de color suave en hover */
+}
+
+/* Estilos para el hover de los enlaces dentro de los submenús */
+.submenu li a:hover {
+  color: #ff4321;              /* Cambio de color en hover */
+}
+
+/* Estilos para el logotipo */
+.logo {
+  float: left;                 /* Flotar a la izquierda */
+  margin-right: 20px;          /* Margen derecho */
+}
+
+/* Estilos para la imagen del logotipo */
+.logo img {
+  width: 30px;                 /* Ancho de la imagen del logotipo */
+  height: auto;                /* Altura automática para mantener la proporción */
+  border-radius: 50%;          /* Borde redondeado */
+}
+
+/* Estilos para el cuadro de información */
+/* Estilos para el cuadro de información */
+.info-box {
+  background-color: #fff;
+  padding: 10px;
+  text-align: right; /* Alinea el contenido a la derecha */
+  position: absolute;
+  bottom: 0;
+  right: 0; /* Cambia de 'left' a 'right' para colocar el cuadro en la esquina inferior derecha */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Estilos para los párrafos dentro del cuadro de información */
+.info-box p {
+  font-size: 1.8rem;            /* Tamaño de fuente */
+  color: #333;                  /* Color del texto */
+}
+
+/* Estilos para el contenedor principal */
+.container {
+  display: flex;                /* Mostrar como flexbox */
+  flex-direction: row;          /* Dirección de fila para colocar la imagen a la izquierda del texto */
+  align-items: center;          /* Alineación vertical del contenido */
+  margin: 20px;                 /* Margen exterior */
+  padding: 20px;                /* Relleno interior */
+  position: relative;           /* Posición relativa */
+}
+
+/* Estilos para el título principal */
+h1 {
+  font-size: 4.5rem;     /* Tamaño de fuente */
+  margin: 40px 0 0 0;    /* Margen superior de 40px, y 0 en los demás márgenes */
+  color: #ffa113;        /* Color del título */
+}
+
+
+/* Estilos para el texto junto a la imagen */
+.image-text {
+    font-family: Arial, sans-serif;
+    max-width: 6000px;
+    text-align: right; /* Alinea el texto a la derecha */
+    margin-top: 20px;
+    flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
+    margin-left: 20px; /* Agrega un margen izquierdo para separar el texto del lado derecho */
+    position: right;
+    font-size: 2.5rem; /* Ajusta el tamaño de fuente según tu preferencia */
+}
+
+/* Estilos para las imágenes */
+img {
+  width: 300px;                 /* Ancho de la imagen */
+  height: auto;                 /* Altura automática para mantener la proporción */
+  border-radius: 45px;          /* Borde redondeado */
+  margin-right: 10px;           /* Margen derecho de 10px (ajusta según tu preferencia) */
+  border: 5px solid #ffa621;    /* Borde y color del borde */
+}
+/* Estilos para el submenú "SubmenuTablas" */
+.submenuTablas {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  padding: 20px;
+  list-style: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los enlaces dentro del submenú "SubmenuTablas" */
+.submenuTablas li a {
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+  text-align: left;
+}
+
+/* Estilos para el hover de los enlaces dentro del submenú "SubmenuTablas" */
+.submenuTablas li a:hover {
+  color: #ff4321;
+}
