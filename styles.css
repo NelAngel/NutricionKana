@@ -35,13 +35,12 @@
         border: 1px solid red;
     }
     nav {
-        background-color: black;
+        background-color: #ff9500; /* Cambia el color de fondo del menú a ff9500 */
         padding: 10px 0;
         position: relative;
-        top: 0px; /* Cambia este valor para ajustar la posición vertical */
+        top: 0px;
         margin-bottom: 10px;
     }
-
     .menu {
         list-style: none;
         margin: 0;

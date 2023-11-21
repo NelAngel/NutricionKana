@@ -10,12 +10,9 @@
     <nav>
         <ul class="menu">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="historial.html">Historial</a></li>
-            <li><a href="alibas.html">Alimentos Básicos</a></li>
-            <li><a href="#">Otro</a></li>
-            <li><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="formulitas.html">Fórmula</a>
             <li><a href="Tablitas.html">Tablas</a>
-                <li><a href="formula.html">Fórmula</a>
+ 
                 
                 <ul class="submenu">
                     <li><a href="imc.html">IMC</a></li>
@@ -37,11 +34,32 @@
         h1 {
             font-size: 24px;
         }
+        .card {
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            background-color: #ff9500;
+            color: #fff;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .card p {
+            padding: 10px;
+            margin: 0;
+        }
 
         .button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007BFF;
+            background-color: #ff9500;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
@@ -51,15 +69,23 @@
         }
 
         .button:hover {
-            background-color: #0056b3;
+            background-color: #ff9500;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Elige una opción:</h1>
-        <a href="tabla.html" class="button">Datos pacientes </a>
-        <a href="tabla1.html" class="button">Datos Deportistas </a>
+        <div class="card">
+            <h2>Datos de Pacientes</h2>
+            <p>Información sobre pacientes.</p>
+            <a href="pacientes.html" class="button">Ver detalles</a>
+        </div>
+
+        <div class="card">
+            <h2>Datos de Deportistas</h2>
+            <p>Información sobre deportistas.</p>
+            <a href="tabla1.html" class="button">Ver detalles</a>
+        </div>
     </div>
 </body>
 </html>

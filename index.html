@@ -4,54 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesindex.css">
-    <title>ciencias de la Nutricion</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            position: relative;
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+        }
+
+        .presentation {
+            position: relative;
+            margin-bottom: 20px; /* Ajusta este valor según tu preferencia */
+        }
+        .card {
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 161, 19, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .card p {
+        margin-bottom: 10px;
+    }
+
+    </style>
+    <title>Ciencias de la Nutricion</title>
 </head>
 <body>
-    <nav>
-        <ul class="menu">
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="formulitas.html">Fórmula</a>
+                    <ul class="submenu">
+                        <li><a href="imc.html">IMC</a></li>
+                        <li><a href="fao.html">FAO</a></li>
+                        <li><a href="miflin.html">MIFLIN</a></li>
+                        <li><a href="harris.html">Harris Y Be</a></li>
+                        <li><a href="Deportista.html">M. deportista</a></li>
+                    </ul>
+                </li>
+                <li><a href="Tablitas.html">Tablas</a>
+                    <ul class="submenuTablas">
+                        <li><a href="tabla.html">T. Pacientes</a></li>
+                        <li><a href="tabla1.html">T. Datos</a></li>
+                    </ul>
+                </li>    
+
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="presentation">
+                <img src="NutriFormulas.png" alt="NutriFormulas">
+                <div class="card">
+                    <!-- Contenido de tu tarjeta aquí -->
+                    <h2>Bienvenido a NutriFormulas</h2>
+                    <p>Hola, ¿cómo estás? Soy NutriFormula y estoy diseñado para ayudarte en tus trabajos. Espero poder ayudarte.</p>
+                    <p>En NutriFormulas, nos dedicamos a proporcionar soluciones nutricionales personalizadas para ayudarte a alcanzar tus objetivos de salud y bienestar. Nuestro equipo de expertos en nutrición está comprometido a brindarte la mejor asesoría y apoyo en tu viaje hacia una vida más saludable.</p>
+                    <p>Explora nuestras herramientas y fórmulas para calcular el Índice de Masa Corporal (IMC), la Tasa Metabólica Basal (TMB) y más. Además, encontrarás información valiosa sobre alimentos básicos, historiales nutricionales y tablas nutricionales.</p>
+                    <p>Estamos aquí para guiarte en cada paso. ¡Gracias por elegir NutriFormulas!</p>
+                </div>
+            </div>
+        </div>
         
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="historial.html">Historial</a></li>
-            <li><a href="alibas.html">Alimentos Básicos</a></li>
-            <li><a href="#">Otro</a></li>
-            <li><a href="pacientes.html">Pacientes</a></li>
-            
-            <li><a href="Tablitas.html">Tablas</a>
-                <ul class="submenuTablas">
-                    <li><a href="tabla.html">T. Pacientes</a></li>
-                    <li><a href="tabla1.html">T. Datos</a></li>
-
-                </ul>
-            </li>    
-            <li><a href="formulitas.html">Fórmula</a>
-                
-                <ul class="submenu">
-                    <li><a href="imc.html">IMC</a></li>
-                    <li><a href="fao.html">FAO</a></li>
-                    <li><a href="miflin.html">MIFLIN</a></li>
-                    <li><a href="harris.html">Harris Y Be</a></li>
-                    <li><a href="Deportista.html">M. deportista </a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    
-    <h1>CIENCIAS DE LA NUTRICION</h1>
-    <div class="container">
-     
-        <img class="escalasizq" src="logo.png" alt="Descripción de la imagen" align="left" width="400">
-        <p class="image-text" align="center">¡Bienvenidos a nuestra página web de Formulas de Nutrición! 
-            Aquí, encontrarán una fuente completa de conocimientos y recursos para optimizar su salud a
-            través de una alimentación equilibrada y personalizada. Nuestro objetivo es ayudarlos a descubrir las 
-            fórmulas perfectas para alcanzar sus metas nutricionales y mejorar su bienestar en general.
-        </p>
-
-    </div>
-    <div class="info-box">
-        <p>¡Creado por: Nely kana Sarayasi!</p>
-        <p>Escuela de Nutrición</p>
-        <p>Número de contacto: 995469715</p>
-    </div>
-   
+    </header>
 </body>
 </html>

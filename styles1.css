@@ -1,24 +1,23 @@
 h1 {
     text-align: center;
-    
 }
 
 .image-text {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif  ;
+    font-family: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
     margin: 0 auto; /* Centra el texto horizontalmente */
     max-width: 600px; 
-    
 }
-.escalasizq{
+
+.escalasizq {
     float: left;
     border-radius: 45px; 
 }
 
-.escalasder{
+.escalasder {
     border-radius: 45px; 
     float: right;
-    clear: right; 
 }
+
 .container {
     display: flex;
     flex-direction: row;
@@ -26,19 +25,18 @@ h1 {
     align-items: center;
     margin: 20px;
 }
-.image {
+
+.avatar {
     border-radius: 75px 15px; 
     width: 100px;
     height: 100px;
     margin: 20px;
-
-    border: 1px solid red;
+    border: 1px solid #ffa113;
 }
+
 nav {
-    background-color: black;
+    background-color: #ffa113;
     padding: 10px 0;
-    position: relative;
-    top: 0px; /* Cambia este valor para ajustar la posición vertical */
     margin-bottom: 10px;
 }
 
@@ -52,20 +50,21 @@ nav {
 
 .menu li {
     margin: 0 20px;
+    position: relative;
+    display: inline-block;
 }
 
 .menu a {
     color: white;
     text-decoration: none;
     font-size: 18px;
-    font-family: Ar; /* Cambiar la fuente aquí */
+    /* Asegúrate de especificar la fuente correcta aquí */
 }
 
 .menu a:hover {
     background-color: #555;
     border-radius: 5px;
 }
-
 
 .info-box {
     background-color: #f0f0f0;
@@ -76,17 +75,12 @@ nav {
     width: 100%;
 }
 
-.menu li {
-    position: relative;
-    display: inline-block;
-}
-
 .submenu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #000000;
+    background-color: #ffa113;
     padding: 0;
     list-style: none;
 }
