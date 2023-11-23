@@ -48,7 +48,38 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Resto del código permanece igual...
+// Manejar solicitud POST a /registro
+app.post('/registro', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    // Validar que el username no sea nulo y otros controles de validación
+    if (!username || !password) {
+      return res.status(400).json({ mensaje: 'Todos los campos son obligatorios.' });
+    }
+
+    // Crear un nuevo usuario en la base de datos
+    const newUser = new User({ username, password });
+    await newUser.save();
+
+    // Redirigir a la página de registro exitoso o mostrar un mensaje de confirmación
+    res.redirect('/registro_exitoso.html');
+  } catch (error) {
+    // Manejar errores, por ejemplo, si el nombre de usuario ya está en uso
+    if (error.code === 11000 && error.keyPattern && error.keyPattern.username) {
+      return res.status(400).json({ mensaje: 'Nombre de usuario ya está en uso.' });
+    }
+
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al registrar el usuario', error: error.message });
+  }
+});
+
+// Otros manejadores de rutas
+app.get('/', (req, res) => {
+  // Manejar la solicitud GET a la ruta principal
+  res.sendFile(path.join(__dirname, 'public', 'seguridad.html'));
+});
 
 // Configurar el puerto y iniciar el servidor
 const PORT = process.env.PORT || 3000;
