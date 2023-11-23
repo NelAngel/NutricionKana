@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            flex: 0 0 calc(30% - 40px); /* Ajusta el tamaño deseado con margen */
+            margin: 15px;
+            padding: 25px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #ff9500;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <title>Ciencias de la Nutrición</title>
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="formulitas.html">Fórmula</a>
+            <li><a href="Tablitas.html">Tablas</a>
+
+                    <ul class="submenu">
+                        <li><a href="imc.html">Indice de Masa Corporal</a></li>
+                        <li><a href="fao.html">Metodo FAO</a></li>
+                        <li><a href="miflin.html">Metodo Miflin</a></li>
+                        <li><a href="harris.html">Metodo Harris y Benedic</a></li>
+                        <li><a href="Deportista.html">Metodo Deportista</a></li>
+                    </ul>
+                </li>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>Indice de Masa Corporal</h2>
+            <a href="imc.html" class="button">Ver fórmula</a>
+        </div>
+        <div class="card">
+            <h2>Metodo FAO</h2>
+            <a href="fao.html" class="button">Ver fórmula</a>
+        </div>
+        <div class="card">
+            <h2>Metodo Miflin</h2>
+            <a href="miflin.html" class="button">Ver fórmula</a>
+        </div>
+        <div class="card">
+            <h2>Metodo Harris y Benedic</h2>
+            <a href="harris.html" class="button">Ver fórmula</a>
+        </div>
+        <div class="card">
+            <h2>Metodo Deportista</h2>
+            <a href="Deportista.html" class="button">Ver fórmula</a>
+        </div>
+    </div>
+</body>
+</html>

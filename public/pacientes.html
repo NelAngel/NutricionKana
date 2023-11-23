@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="styles1.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      table-layout: auto; /* Ajustar automáticamente el ancho de la tabla */
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    td[contenteditable="true"] {
+      background-color: #f2f2f2;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .acciones {
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+
+        <li><a href="Tablitas.html">Tablas</a>
+        </li>    
+        <li><a href="formulitas.html">Fórmula</a>
+            <ul class="submenu">
+                <li><a href="imc.html">IMC</a></li>
+                <li><a href="fao.html">FAO</a></li>
+                <li><a href="miflin.html">MIFLIN</a></li>
+                <li><a href="harris.html">Harris Y Be</a></li>
+                <li><a href="Deportista.html">M. deportista</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+  <table id="data-table" contenteditable="true">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Edad</th>
+        <th>Sexo</th>
+        <th>Peso 1</th>
+        <th>Peso 2</th>
+        <th>Talla</th>
+        <th>Actividad Física</th>
+        <th>Condición</th>
+        <th>TMB</th>
+        <th>GET</th>
+        <th>Kcal Requeridos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <button onclick="agregarFila()">Agregar Fila</button>
+  <button id="guardarBtn" class="hidden" onclick="guardarDatos()">Guardar Datos</button>
+
+  <script>
+    document.getElementById("data-table").addEventListener("input", function(event) {
+      const editedCell = event.target;
+      actualizarDatos(editedCell);
+    });
+
+    function agregarFila() {
+      const tableBody = document.getElementById("table-body");
+      const newRow = document.createElement("tr");
+
+      for (let i = 0; i < 12; i++) {
+        const newCell = document.createElement("td");
+        newCell.setAttribute("contenteditable", "true");
+        newRow.appendChild(newCell);
+      }
+
+      const accionesCell = document.createElement("td");
+      const accionesContainer = document.createElement("div");
+      accionesContainer.classList.add("acciones");
+
+      const editarBtn = document.createElement("button");
+      editarBtn.textContent = "Editar";
+      editarBtn.onclick = function() { editarFila(newRow); };
+
+      const eliminarBtn = document.createElement("button");
+      eliminarBtn.textContent = "Eliminar";
+      eliminarBtn.onclick = function() { eliminarFila(newRow); };
+
+      accionesContainer.appendChild(editarBtn);
+      accionesContainer.appendChild(eliminarBtn);
+      accionesCell.appendChild(accionesContainer);
+      newRow.appendChild(accionesCell);
+
+      tableBody.appendChild(newRow);
+      mostrarBotonGuardar(true);
+    }
+
+    function mostrarBotonGuardar(estado) {
+      const guardarBtn = document.getElementById("guardarBtn");
+      guardarBtn.classList.toggle("hidden", !estado);
+    }
+
+    function guardarDatos() {
+      const tableRows = document.getElementById("table-body").getElementsByTagName("tr");
+      const datosArray = [];
+
+      for (let i = 0; i < tableRows.length; i++) {
+        const cells = tableRows[i].getElementsByTagName("td");
+        const rowData = {};
+
+        for (let j = 0; j < cells.length - 1; j++) {
+          rowData[document.getElementsByTagName("th")[j].innerText] = cells[j].innerText;
+        }
+
+        datosArray.push(rowData);
+      }
+
+      localStorage.setItem("datos", JSON.stringify(datosArray));
+      alert("Los datos han sido guardados correctamente.");
+      mostrarBotonGuardar(false);
+    }
+
+    function actualizarDatos(editedCell) {
+      const rowIndex = editedCell.parentElement.rowIndex;
+      const cellIndex = editedCell.cellIndex;
+      const value = editedCell.textContent.trim();
+
+      const datosGuardados = localStorage.getItem("datos");
+      let datosArray = datosGuardados ? JSON.parse(datosGuardados) : [];
+
+      if (datosArray.length < rowIndex) {
+        alert("No se encontraron datos para la fila especificada.");
+        return;
+      }
+
+      datosArray[rowIndex - 1][Object.keys(datosArray[0])[cellIndex]] = value;
+      localStorage.setItem("datos", JSON.stringify(datosArray));
+    }
+
+    function editarFila(row) {
+      const tableRows = document.getElementById("table-body").getElementsByTagName("tr");
+
+      // Deshabilitar edición en otras filas
+      for (let i = 0; i < tableRows.length; i++) {
+        const cells = tableRows[i].getElementsByTagName("td");
+        for (let j = 0; j < cells.length - 1; j++) {
+          cells[j].setAttribute("contenteditable", "false");
+        }
+      }
+
+      // Habilitar edición solo en la fila seleccionada
+      const cellsToEdit = row.getElementsByTagName("td");
+      for (let i = 0; i < cellsToEdit.length - 1; i++) {
+        cellsToEdit[i].setAttribute("contenteditable", "true");
+      }
+
+      // Mostrar el botón "Guardar Cambios"
+      mostrarBotonGuardar(true);
+    }
+
+    function eliminarFila(row) {
+      const tableBody = document.getElementById("table-body");
+      tableBody.removeChild(row);
+      mostrarBotonGuardar(true); // Mostrar el botón "Guardar Cambios" después de eliminar una fila
+    }
+
+    function displayData() {
+      const tableBody = document.getElementById("table-body");
+      tableBody.innerHTML = "";
+
+      const datosGuardados = localStorage.getItem("datos");
+      let datosArray = datosGuardados ? JSON.parse(datosGuardados) : [];
+
+      datosArray.forEach((datos) => {
+        const row = document.createElement("tr");
+        Object.values(datos).forEach((value) => {
+          const cell = document.createElement("td");
+          cell.textContent = value;
+          cell.setAttribute("contenteditable", "false");
+          row.appendChild(cell);
+        });
+
+        const accionesCell = document.createElement("td");
+        const accionesContainer = document.createElement("div");
+        accionesContainer.classList.add("acciones");
+
+        const editarBtn = document.createElement("button");
+        editarBtn.textContent = "Editar";
+        editarBtn.onclick = function() { editarFila(row); };
+
+        const eliminarBtn = document.createElement("button");
+        eliminarBtn.textContent = "Eliminar";
+        eliminarBtn.onclick = function() { eliminarFila(row); };
+
+        accionesContainer.appendChild(editarBtn);
+        accionesContainer.appendChild(eliminarBtn);
+        accionesCell.appendChild(accionesContainer);
+        row.appendChild(accionesCell);
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Mostrar datos cuando se carga la página
+    displayData();
+  </script>
+</body>
+</html>

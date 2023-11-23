@@ -11,7 +11,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 'secret'
       MONGO_INITDB_DATABASE: users
     volumes:
-      - ./init/init-script.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./models/user.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./data:/data/db
       - ./data/log:/var/log/mongodb/
     ports:

@@ -1,59 +1,57 @@
-  // app.js
-  const express = require('express');
-  const path = require('path');
-  const bodyParser = require('body-parser');
-  const mongoose = require('mongoose');
-  const User = require('./models/user');
+// Importar módulos necesarios
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt'); // Agrega esta línea para importar la biblioteca bcrypt
+const User = require('./models/user'); // Asegúrate de que la ruta del modelo sea correcta
 
-  const app = express();
+// Crear una instancia de Express
+const app = express();
 
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(express.static(path.join(__dirname, 'public')));
+// Configurar middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-  mongoose.connect('mongodb://root:secret@localhost:27017/users', {
-    authSource: 'admin'
-  });
-  
+// Conectar a la base de datos MongoDB
+mongoose.connect('mongodb://root:secret@localhost:27017/users', {
+  authSource: 'admin',
+  useNewUrlParser: true, // Agrega esta opción para evitar advertencias de deprecación
+  useUnifiedTopology: true, // Agrega esta opción para evitar advertencias de deprecación
+});
 
-  const db = mongoose.connection;
+const db = mongoose.connection;
 
-  db.on('error', console.error.bind(console, 'Error de conexión a MongoDB:'));
-  db.once('open', () => {
-    console.log('Conexión exitosa a MongoDB');
-  });
+db.on('error', console.error.bind(console, 'Error de conexión a MongoDB:'));
+db.once('open', () => {
+  console.log('Conexión exitosa a MongoDB');
+});
 
-  app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'seguridad.html'));
-  });
+// Manejar solicitud POST a /login
+app.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
 
-  app.post('/registro', async (req, res) => {
-    try {
-      const { username, password, email } = req.body;
-  
-      // Validar que el username no sea nulo
-      if (!username) {
-        return res.status(400).json({ mensaje: 'El nombre de usuario no puede estar vacío.' });
-      }
-  
-      const newUser = new User({ username, password, email });
-      await newUser.save();
-  
-      res.status(201).json({ mensaje: 'Usuario registrado exitosamente' });
-    } catch (error) {
-      if (error.code === 11000 && error.keyPattern && error.keyPattern.username) {
-        return res.status(400).json({ mensaje: 'Nombre de usuario ya está en uso.' });
-      }
-  
-      console.error(error);
-      res.status(500).json({ mensaje: 'Error al registrar el usuario', error: error.message });
+    // Validar las credenciales en tu base de datos (aquí debes implementar tu lógica específica)
+    const user = await User.findOne({ username });
+
+    if (user && await bcrypt.compare(password, user.password)) {
+      // Credenciales correctas, redirigir a la página principal (index.html)
+      res.redirect('/index.html');
+    } else {
+      // Credenciales incorrectas, mostrar mensaje de error o redirigir nuevamente a la página de inicio de sesión
+      res.status(401).json({ mensaje: 'Credenciales incorrectas. Vuelve e intenta de nuevo.' });
     }
-  });
-  
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'seguridad.html'));
-  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al procesar la solicitud', error: error.message });
+  }
+});
 
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-  });
+// Resto del código permanece igual...
+
+// Configurar el puerto y iniciar el servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
+});

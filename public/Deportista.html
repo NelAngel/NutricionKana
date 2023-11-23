@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculadora TMR</title>
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="historial.html">Historial</a></li>
+            <li><a href="alibas.html">Alimentos Básicos</a></li>
+            <li><a href="#">Otro</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="Tablitas.html">Tablitas</a>
+            <li><a href="formula.html">Fórmula</a>
+            
+                
+                <ul class="submenu">
+                    <li><a href="imc.html">IMC</a></li>
+                    <li><a href="fao.html">FAO</a></li>
+                    <li><a href="miflin.html">MIFLIN</a></li>
+                    <li><a href="harris.html">Harris Y Be</a></li>
+                    <li><a href="Deportista.html">M. deportista </a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #tmrForm {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+            align-self: center;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Tasa Metabólica en Reposo (TMR)</h1>
+    <p>Utilice la fórmula de Cunningham (1980) para calcular su TMR:</p>
+    
+    <form id="tmrForm">
+        <label for="masaCorporalMagra">Masa Corporal Magra (en kg):</label>
+        <input type="number" id="masaCorporalMagra" step="0.01" required>
+    </form>
+    
+    <button type="button" onclick="calcularTMR()">Calcular TMR</button>
+    
+    <p>Resultado:</p>
+    <div id="resultado"></div>
+    
+    <script>
+        function calcularTMR() {
+            const masaCorporalMagra = parseFloat(document.getElementById('masaCorporalMagra').value);
+            if (!isNaN(masaCorporalMagra)) {
+                const tmr = 500 + 22 * masaCorporalMagra;
+                document.getElementById('resultado').innerHTML = `Su TMR es: ${tmr.toFixed(2)} kcal/día`;
+            } else {
+                alert('Por favor, ingrese una masa corporal magra válida.');
+            }
+        }
+    </script>
+</body>
+</html>

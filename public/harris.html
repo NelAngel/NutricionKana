@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="styles1.css">
+    <title>HARRIC Y Benedict</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            background-color: #ffa113;
+            padding: 10px 40px; /* Ajustar el padding horizontal para ampliar la barra */
+            width: 95%; /* Ajustar el ancho de la barra de navegación */
+            margin-bottom: 20px; /* Agregar un margen inferior para separar el contenido */
+        }
+
+        .menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu li {
+            margin: 0 20px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .image {
+            border-radius: 75px 15px;
+            width: 250px; /* Ajustar el ancho de las imágenes */
+            height: 250px; /* Ajustar el alto de las imágenes */
+            margin: 20px;
+        }
+
+        /* Ajustar el estilo del texto */
+        h1 {
+            text-align: center;
+            margin-top: 10px; /* Agregar margen superior para separar el texto de la imagen */
+        }
+
+        .image-container > div {
+            text-align: center;
+            position: relative;
+            padding-right: 30px; /* Ajustar el espacio entre el borde y el texto */
+        }
+
+        /* Ajustar la posición del texto "HOMBRE" */
+        .hombre {
+            margin-right: 100px; /* Desplazar el texto hacia la derecha */
+            border-right: 1px solid #ccc; /* Agregar borde derecho */
+        }
+
+        /* Ajustar la posición del texto "MUJER" */
+        .mujer {
+            margin-right: 50px; /* Desplazar el texto hacia la derecha */
+            border-right: 1px solid #ccc; /* Agregar borde derecho */
+            border-left: 1px solid #ccc; /* Agregar borde izquierdo */
+        }
+
+        /* Ajustar la posición del texto "LACTANTE" */
+        .lactante {
+            margin-left: 50px; /* Desplazar el texto hacia la izquierda */
+            border-left: 1px solid #ccc; /* Agregar borde izquierdo */
+        }
+
+        /* Estilo para el formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn-calcular {
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .resultado {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="historial.html">Historial</a></li>
+            <li><a href="#">Otro</a></li>
+            <li><a href="harris.html">Metodo Harris Y Benedict</a></li>
+            <li><a href="pacientes.html">Pacientes</a></li>
+            <li><a href="formula.html">Fórmula</a>
+                
+                <ul class="submenu">
+                    <li><a href="fao.html">FAO</a></li>
+                    <li><a href="imc.html">IMC</a></li>
+                    <li><a href="miflin.html">MIFLIN</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </nav>
+    <h1>Metodo Harris Y Benedict</h1>
+    <div class="image-container">
+        <div class="hombre">
+            <h1>HOMBRE</h1>
+            <img src="hombre.jpg" class="image" width="200">
+            <form id="formHombre">
+                <!-- Cambia el tipo de entrada a "text" para aceptar números decimales y enteros -->
+                <input type="text" placeholder="Peso" id="pesoHombre">
+                <input type="number" placeholder="Talla" id="tallaHombre">
+                <input type="number" placeholder="Edad" id="edadHombre">
+                <div class="resultado-texto">
+                    <h4>RESPUESTA</h4>
+                    <input type="text" id="respuestaHombre" readonly>
+                </div>
+                <!-- Cambia el tipo de botón a "button" para evitar el envío del formulario -->
+                <button class="btn-calcular" type="button" onclick="calcularHombre()">Calcular</button>
+            </form>
+            <div class="resultado" id="resultadoHombre"></div>
+        </div>
+        
+ 
+<div class="mujer">
+    <h1>MUJER</h1>
+    <img src="mujer.jpg" class="image" width="200">
+    <form id="formMujer">
+        <!-- Cambia el tipo de entrada a "text" para aceptar números decimales y enteros -->
+        <input type="text" placeholder="Peso" id="pesoMujer">
+        <input type="number" placeholder="Talla" id="tallaMujer">
+        <input type="number" placeholder="Edad" id="edadMujer">
+        <div class="resultado-texto">
+            <h4>RESPUESTA</h4>
+            <input type="text" id="respuestamujer" readonly>
+        </div>
+        <!-- Cambia el tipo de botón a "button" para evitar el envío del formulario -->
+        <button class="btn-calcular" type="button" onclick="calcularMujer()">Calcular</button>
+    </form>
+    <div class="resultado" id="resultadomujer"></div>
+</div>
+
+<div class="lactante">
+    <h1>LACTANTE</h1>
+    <img src="bebe.jpg" class="image" width="200">
+    <form id="formLactante">
+        <!-- Cambia el tipo de entrada a "text" para aceptar números decimales y enteros -->
+        <input type="text" placeholder="Peso" id="pesoLactante">
+        <input type="text" placeholder="Talla" id="tallaLactante">
+        <div class="resultado-texto">
+            <h4>RESPUESTA</h4>
+            <input type="text" id="respueslactante" readonly>
+        </div>
+        <!-- Cambia el tipo de botón a "button" para evitar el envío del formulario -->
+        <button class="btn-calcular" type="button" onclick="calcularLactante()">Calcular</button>
+    </form>
+    <div class="resultado" id="resultadoLactante"></div>
+</div>
+<!-- ... (código HTML anterior) ... -->
+<!-- ... (código HTML anterior) ... -->
+
+<script>
+  function calcularHombre() {
+    const pesoHombre = document.getElementById("pesoHombre").value;
+    const tallaHombre = document.getElementById("tallaHombre").value;
+    const edadHombre = document.getElementById("edadHombre").value;
+    calcular(pesoHombre, tallaHombre, edadHombre, "respuestaHombre", false);
+}
+
+function calcularMujer() {
+    const pesoMujer = document.getElementById("pesoMujer").value;
+    const tallaMujer = document.getElementById("tallaMujer").value;
+    const edadMujer = document.getElementById("edadMujer").value;
+    calcular(pesoMujer, tallaMujer, edadMujer, "respuestamujer", true);
+}
+
+function calcularLactante() {
+    const pesoLactante = document.getElementById("pesoLactante").value;
+    const tallaLactante = document.getElementById("tallaLactante").value;
+    calcular(pesoLactante, tallaLactante, null, "respueslactante", false, true);
+}
+
+function calcular(peso, talla, edad, resultadoId, esMujer, esLactante) {
+    // Convertir los valores a números decimales utilizando parseFloat
+    const pesoDecimal = parseFloat(peso);
+    const tallaDecimal = parseFloat(talla);
+    const edadDecimal = parseFloat(edad);
+
+    // Validar si los valores ingresados son números válidos (no NaN)
+    if (!isNaN(pesoDecimal) && !isNaN(tallaDecimal)) {
+        let resultado;
+
+        if (esMujer) {
+            resultado = 655 + (9.6 * pesoDecimal) + (1.8 * tallaDecimal) - (4.6 * edadDecimal);
+        } else if (esLactante) {
+            resultado = 22.10 + (31 * pesoDecimal) - (1.1 * tallaDecimal);
+        } else {
+            resultado = 66.0 + (13.7 * pesoDecimal) + (5.0 * tallaDecimal) - (6.8 * edadDecimal);
+        }
+
+        mostrarResultado("Resultado: " + resultado.toFixed(2), resultadoId);
+    } else {
+        // Mostrar un mensaje de error si los valores ingresados no son válidos
+        mostrarResultado("Ingresa pesos y tallas válidos.", resultadoId);
+    }
+}
+    function mostrarResultado(resultado, resultadoId) {
+        const divResultado = document.getElementById(resultadoId);
+        divResultado.style.display = "block"; // Mostrar el cuadro de respuesta
+
+        // Asignar el resultado al cuadro de texto correspondiente
+        const respuestaInput = document.getElementById(resultadoId);
+        respuestaInput.value = resultado;
+    }
+</script>
+
+</body>
+</html>
