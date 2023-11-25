@@ -22,7 +22,7 @@
                         <i class="fas fa-user"></i>
                    </div>
                    <div class="div">
-                        <h5>USUARIO</h5>
+                        <h5>NOMBRE Y APELLIDO</h5>
                         <input type="text" id="username" name="username" class="input" required>
                    </div>
                 </div>
@@ -35,7 +35,7 @@
                         <input type="password" id="password" name="password" class="input" required>
                    </div>
                 </div>
-                <a href="#">Olvidaste tu contraseña?</a>
+                <a href="recuperar.html">Olvidaste tu contraseña?</a>
                 <a href="registrarme.html">Registrarme</a>
                 <input type="submit" class="btn" value="Login">
             </form>
@@ -45,5 +45,28 @@
 
     <script src="js/seguridad.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.input');
+
+            function addClass() {
+                let parent = this.parentNode.parentNode;
+                parent.classList.add('focus');
+            }
+
+            function removeClass() {
+                let parent = this.parentNode.parentNode;
+                if (this.value === '') {
+                    parent.classList.remove('focus');
+                }
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', addClass);
+                input.addEventListener('blur', removeClass);
+            });
+        });
+    </script>
+    
 </body>
 </html>

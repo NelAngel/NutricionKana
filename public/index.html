@@ -43,6 +43,11 @@
         margin-bottom: 10px;
     }
 
+        .logout-button:hover {
+            background-color: #111;
+            
+        }
+
     </style>
     <title>Ciencias de la Nutricion</title>
 </head>
@@ -51,38 +56,37 @@
         <nav>
             <ul class="menu">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="formulitas.html">Fórmula</a>
-                    <ul class="submenu">
-                        <li><a href="imc.html">IMC</a></li>
-                        <li><a href="fao.html">FAO</a></li>
-                        <li><a href="miflin.html">MIFLIN</a></li>
-                        <li><a href="harris.html">Harris Y Be</a></li>
-                        <li><a href="Deportista.html">M. deportista</a></li>
-                    </ul>
-                </li>
-                <li><a href="Tablitas.html">Tablas</a>
-                    <ul class="submenuTablas">
-                        <li><a href="tabla.html">T. Pacientes</a></li>
-                        <li><a href="tabla1.html">T. Datos</a></li>
-                    </ul>
-                </li>    
-
+                <li><a href="formulitas.html">Fórmula</a></li>
+                <li><a href="Tablitas.html">Tablas</a></li>
+                <li class="logout-button"><a href="seguridad.html">Salir</a></li>
             </ul>
         </nav>
         <div class="container">
             <div class="presentation">
                 <img src="NutriFormulas.png" alt="NutriFormulas">
                 <div class="card">
-                    <!-- Contenido de tu tarjeta aquí -->
                     <h2>Bienvenido a NutriFormulas</h2>
                     <p>Hola, ¿cómo estás? Soy NutriFormula y estoy diseñado para ayudarte en tus trabajos. Espero poder ayudarte.</p>
-                    <p>En NutriFormulas, nos dedicamos a proporcionar soluciones nutricionales personalizadas para ayudarte a alcanzar tus objetivos de salud y bienestar. Nuestro equipo de expertos en nutrición está comprometido a brindarte la mejor asesoría y apoyo en tu viaje hacia una vida más saludable.</p>
-                    <p>Explora nuestras herramientas y fórmulas para calcular el Índice de Masa Corporal (IMC), la Tasa Metabólica Basal (TMB) y más. Además, encontrarás información valiosa sobre alimentos básicos, historiales nutricionales y tablas nutricionales.</p>
+                    <p>En NutriFormulas, nos dedicamos a proporcionar soluciones nutricionales personalizadas para ayudarte a alcanzar tus objetivos de salud y bienestar.</p>
+                    <p>Explora nuestras herramientas y fórmulas para calcular el Índice de Masa Corporal (IMC), la Tasa Metabólica Basal (TMB) y más.</p>
                     <p>Estamos aquí para guiarte en cada paso. ¡Gracias por elegir NutriFormulas!</p>
                 </div>
             </div>
         </div>
-        
     </header>
+
+    <script>
+        // Verificar si el usuario está autenticado (puedes adaptar según tu lógica)
+        const isAuthenticated = true; // Reemplaza esto con tu lógica de autenticación
+
+        // Si el usuario está autenticado, obtener y mostrar el nombre de usuario
+        if (isAuthenticated) {
+            const username = "NombreDeUsuario"; // Reemplaza esto con la lógica para obtener el nombre real del usuario
+            document.getElementById("username").textContent = username;
+        } else {
+            // Redirigir a la página de inicio de sesión si el usuario no está autenticado
+            window.location.href = "seguridad.html";
+        }
+    </script>
 </body>
 </html>

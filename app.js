@@ -3,8 +3,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt'); // Agrega esta línea para importar la biblioteca bcrypt
-const User = require('./models/user'); // Asegúrate de que la ruta del modelo sea correcta
+const bcrypt = require('bcrypt');
+const User = require('./models/user');
 
 // Crear una instancia de Express
 const app = express();
@@ -16,8 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Conectar a la base de datos MongoDB
 mongoose.connect('mongodb://root:secret@localhost:27017/users', {
   authSource: 'admin',
-  useNewUrlParser: true, // Agrega esta opción para evitar advertencias de deprecación
-  useUnifiedTopology: true, // Agrega esta opción para evitar advertencias de deprecación
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
@@ -51,15 +51,15 @@ app.post('/login', async (req, res) => {
 // Manejar solicitud POST a /registro
 app.post('/registro', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, email, dni, edad } = req.body;
 
-    // Validar que el username no sea nulo y otros controles de validación
-    if (!username || !password) {
+    // Validar que los campos no estén vacíos
+    if (!username || !password || !email || !dni || !edad) {
       return res.status(400).json({ mensaje: 'Todos los campos son obligatorios.' });
     }
 
     // Crear un nuevo usuario en la base de datos
-    const newUser = new User({ username, password });
+    const newUser = new User({ username, password, email, dni, edad });
     await newUser.save();
 
     // Redirigir a la página de registro exitoso o mostrar un mensaje de confirmación
@@ -72,6 +72,37 @@ app.post('/registro', async (req, res) => {
 
     console.error(error);
     res.status(500).json({ mensaje: 'Error al registrar el usuario', error: error.message });
+  }
+});
+
+// Nueva ruta para manejar la recuperación de contraseña
+app.post('/recover', async (req, res) => {
+  try {
+    const { username, email, dni, newPassword } = req.body;
+
+    // Realizar la validación de los datos, por ejemplo, comparar con la información en la base de datos
+    // (Aquí debes implementar tu lógica específica de validación)
+
+    // Supongamos que la validación es exitosa y puedes cambiar la contraseña
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+    const user = await User.findOneAndUpdate(
+      { username, email, dni },
+      { password: hashedPassword },
+      { new: true } // Esto devuelve el documento actualizado
+    );
+
+    if (!user) {
+      // Si no se encuentra el usuario con los datos proporcionados, puedes mostrar un mensaje de error
+      return res.status(404).json({ mensaje: 'No se encontró el usuario con la información proporcionada.' });
+    }
+
+    // Envía una respuesta indicando que la recuperación fue exitosa
+    res.status(200).json({ mensaje: 'Contraseña recuperada exitosamente.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al procesar la solicitud', error: error.message });
   }
 });
 

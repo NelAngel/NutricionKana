@@ -220,3 +220,12 @@ a:hover{
 		justify-content: center;
 	}
 }
+.input-div.focus h5,
+.input-div.focus input {
+    top: -2px;
+    font-size: 17px;
+}
+
+.input-div.focus i {
+    color: #1fa2ff;
+}

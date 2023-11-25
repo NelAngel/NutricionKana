@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Recuperar Contraseña - Nutricionismo</title>
+    <link rel="stylesheet" href="archivoscss/seguridad.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <div class="img">
+            <img src="logo.png" width="500">
+        </div>
+        <div class="login-content">
+            <form id="recoveryForm" action="/recover" method="post">
+                <img src="avatar.png">
+                <h2 class="title">Recuperar Contraseña: </h2>
+                <div class="input-div">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>NOMBRE Y APELLIDO</h5>
+                        <input type="text" id="username" name="username" class="input" required>
+                    </div>
+                </div>
+                <div class="input-div">
+                    <div class="i">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <h5>CORREO</h5>
+                        <input type="email" id="email" name="email" class="input" required>
+                    </div>
+                </div>
+                <div class="input-div">
+                    <div class="i">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="div">
+                        <h5>DNI</h5>
+                        <input type="text" id="dni" name="dni" class="input" required>
+                    </div>
+                </div>
+                <div class="input-div">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>CONTRASEÑA NUEVA</h5>
+                        <input type="password" id="newPassword" name="newPassword" class="input" required>
+                    </div>
+                </div>
+                <input type="submit" class="btn" value="Recuperar Contraseña">
+            </form>
+            <p id="errorMessage" style="color: red;"></p> <!-- Nuevo elemento para mostrar mensajes de error -->
+        </div>
+    </div>
+
+    <script src="js/seguridad.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.input');
+
+            function addClass() {
+                let parent = this.parentNode.parentNode;
+                parent.classList.add('focus');
+            }
+
+            function removeClass() {
+                let parent = this.parentNode.parentNode;
+                if (this.value === '') {
+                    parent.classList.remove('focus');
+                }
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', addClass);
+                input.addEventListener('blur', removeClass);
+            });
+        });
+    </script>
+</body>
+</html>
