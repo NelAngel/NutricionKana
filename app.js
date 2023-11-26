@@ -40,7 +40,7 @@ app.post('/login', async (req, res) => {
       res.redirect('/index.html');
     } else {
       // Credenciales incorrectas, mostrar mensaje de error o redirigir nuevamente a la página de inicio de sesión
-      res.status(401).json({ mensaje: 'Credenciales incorrectas. Vuelve e intenta de nuevo.' });
+      res.redirect('/credencialincorrecto.html');
     }
   } catch (error) {
     console.error(error);
@@ -62,16 +62,16 @@ app.post('/registro', async (req, res) => {
     const newUser = new User({ username, password, email, dni, edad });
     await newUser.save();
 
-    // Redirigir a la página de registro exitoso o mostrar un mensaje de confirmación
-    res.redirect('/registro_exitoso.html');
+    // Renderizar la página de bienvenida después de un registro exitoso
+    res.sendFile(path.join(__dirname, 'public', 'bienvenida.html'));
   } catch (error) {
     // Manejar errores, por ejemplo, si el nombre de usuario ya está en uso
     if (error.code === 11000 && error.keyPattern && error.keyPattern.username) {
-      return res.status(400).json({ mensaje: 'Nombre de usuario ya está en uso.' });
+      return res.sendFile(path.join(__dirname, 'public', 'ErrorName.html'));
     }
 
     console.error(error);
-    res.status(500).json({ mensaje: 'Error al registrar el usuario', error: error.message });
+    return res.sendFile(path.join(__dirname, 'public', 'registroerroneo.html'));
   }
 });
 
@@ -95,11 +95,11 @@ app.post('/recover', async (req, res) => {
 
     if (!user) {
       // Si no se encuentra el usuario con los datos proporcionados, puedes mostrar un mensaje de error
-      return res.status(404).json({ mensaje: 'No se encontró el usuario con la información proporcionada.' });
+      return res.sendFile(path.join(__dirname, 'public', 'errormath.html'));
     }
 
     // Envía una respuesta indicando que la recuperación fue exitosa
-    res.status(200).json({ mensaje: 'Contraseña recuperada exitosamente.' });
+    res.sendFile(__dirname + '/public/solicitudrecu.html');
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensaje: 'Error al procesar la solicitud', error: error.message });
