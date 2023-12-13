@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
             background-color: #f8f8f8;
             padding: 20px;
             text-align: center;
+            z-index: 999; /* Asegura que el encabezado esté por debajo de la calculadora */
         }
 
         .container {
@@ -23,34 +25,90 @@
 
         .presentation {
             position: relative;
-            margin-bottom: 20px; /* Ajusta este valor según tu preferencia */
+            margin-bottom: 20px;
+            z-index: 1; /* Coloca la imagen por encima del fondo de la calculadora */
         }
-        .card {
-        position: absolute;
-        top: 50%;
-        left: 70%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(255, 161, 19, 0.7);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-width: 500px;
-        width: 100%;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
 
-    .card p {
-        margin-bottom: 10px;
-    }
+        .card {
+            display: none;
+            /* Oculta la calculadora inicialmente */
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            z-index: 999;
+            /* Asegura que la calculadora esté por encima de la imagen */
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px; /* Ajusta el tamaño de la tarjeta de la calculadora según tus preferencias */
+            width: 100%;
+        }
+        .card1  {
+            position: absolute;
+            top: 50%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 161, 19, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            z-index: 998; /* Asegura que la calculadora esté por encima del contenido principal */
+        }
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 5px; /* Agrega un espacio entre los botones */
+        }
+
+        .calculator-buttons button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffa113;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
 
         .logout-button:hover {
             background-color: #111;
-            
         }
 
+        .arrow-button {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            cursor: pointer;
+            z-index: 1000;
+            /* Asegura que el botón de flecha esté por encima de todo */
+        }
+
+        .arrow-button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .presentation img {
+            position: relative;
+            max-width: 100%;
+            height: auto;
+        }
     </style>
     <title>Ciencias de la Nutricion</title>
 </head>
+
 <body>
     <header>
         <nav>
@@ -64,9 +122,35 @@
         <div class="container">
             <div class="presentation">
                 <img src="NutriFormulas.png" alt="NutriFormulas">
-                <div class="card">
+                <div class="card" id="calculatorContainer">
+                    <h2>Calculadora</h2>
+                    <input type="text" id="result" disabled>
+                    <div class="calculator-buttons">
+                        <button onclick="appendNumber('7')">7</button>
+                        <button onclick="appendNumber('8')">8</button>
+                        <button onclick="appendNumber('9')">9</button>
+                        <button onclick="appendNumber('4')">4</button>
+                        <button onclick="appendNumber('5')">5</button>
+                        <button onclick="appendNumber('6')">6</button>
+                        <button onclick="appendNumber('1')">1</button>
+                        <button onclick="appendNumber('2')">2</button>
+                        <button onclick="appendNumber('3')">3</button>
+                        <button onclick="appendNumber('0')">0</button>
+                        <button onclick="clearCalculator()">C</button>
+                        <button onclick="calculateResult()">=</button>
+                        <button onclick="appendOperator('+')">+</button>
+                        <button onclick="appendOperator('-')">-</button>
+                        <button onclick="appendOperator('*')">*</button>
+                        <button onclick="appendOperator('/')">/</button>
+                    </div>
+                </div>
+
+                <div class="arrow-button" onclick="toggleCalculator()">
+                    <img src="flecha.png" alt="Flecha">
+                </div>
+                <div class="card1">
                     <h2>Bienvenido a NutriFormulas</h2>
-                    <p>Hola, ¿cómo estás? Soy NutriFormula diseñado Por la Señorita Nely Kana Sarayasi de la Escuela Ciencias de la Nutricion, estoy aqui para ayudarte en tus trabajos. Espero poder ayudarte.</p>
+                    <p>Hola, ¿cómo estás? Soy NutriFormula diseñado por la Señorita Nely Kana Sarayasi de la Escuela Ciencias de la Nutricion. Estoy aquí para ayudarte en tus trabajos. Espero poder ayudarte.</p>
                     <p>Explora nuestras herramientas y fórmulas para calcular el Índice de Masa Corporal (IMC), la Tasa Metabólica Basal (TMB) y más.</p>
                     <p>Estamos aquí para guiarte en cada paso. ¡Gracias por elegir NutriFormulas!</p>
                 </div>
@@ -75,17 +159,53 @@
     </header>
 
     <script>
+        let currentInput = '';
+
+        function appendNumber(number) {
+            currentInput += number;
+            updateDisplay();
+        }
+
+        function appendOperator(operator) {
+            currentInput += operator;
+            updateDisplay();
+        }
+
+        function clearCalculator() {
+            currentInput = '';
+            updateDisplay();
+        }
+
+        function calculateResult() {
+            try {
+                const result = eval(currentInput);
+                document.getElementById('result').value = result;
+            } catch (error) {
+                document.getElementById('result').value = 'Error';
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('result').value = currentInput;
+        }
+
+        function toggleCalculator() {
+            const calculator = document.getElementById('calculatorContainer');
+            calculator.style.display = calculator.style.display === 'none' ? 'block' : 'none';
+        }
+
         // Verificar si el usuario está autenticado (puedes adaptar según tu lógica)
         const isAuthenticated = true; // Reemplaza esto con tu lógica de autenticación
 
         // Si el usuario está autenticado, obtener y mostrar el nombre de usuario
         if (isAuthenticated) {
             const username = "NombreDeUsuario"; // Reemplaza esto con la lógica para obtener el nombre real del usuario
-            document.getElementById("username").textContent = username;
+            // document.getElementById("username").textContent = username; // Esta línea necesita un elemento con el id "username"
         } else {
             // Redirigir a la página de inicio de sesión si el usuario no está autenticado
             window.location.href = "seguridad.html";
         }
     </script>
 </body>
+
 </html>

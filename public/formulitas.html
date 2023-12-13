@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <style>
-
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -14,7 +14,8 @@
         }
 
         .card {
-            flex: 0 0 calc(30% - 40px); /* Ajusta el tamaño deseado con margen */
+            flex: 0 0 calc(30% - 40px);
+            /* Ajusta el tamaño deseado con margen */
             margin: 15px;
             padding: 25px;
             text-align: center;
@@ -39,15 +40,70 @@
         .button:hover {
             background-color: #0056b3;
         }
+
+        /* Nueva calculadora styles */
+        .calculator-container {
+            display: none;
+            /* Oculta la calculadora inicialmente */
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            z-index: 999;
+            /* Asegura que la calculadora esté por encima de la imagen */
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px; /* Ajusta el tamaño de la tarjeta de la calculadora según tus preferencias */
+            width: 100%;
+        }
+
+        .calculator-input {
+        width: calc(100% - 20px); /* Ancho del 100% con un margen de 20px al lado derecho */
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 5px;
+        }
+
+        .calculator-buttons button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffa113;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .arrow-button {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            cursor: pointer;
+            z-index: 1000; /* Asegura que el botón de flecha esté por encima de todo */
+        }
+
+        .arrow-button img {
+            width: 30px;
+            height: 30px;
+        }
     </style>
     <title>Ciencias de la Nutrición</title>
 </head>
+
 <body>
     <nav>
         <ul class="menu">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="formulitas.html">Fórmula</a>
-            <li><a href="Tablitas.html">Tablas</a>
+                <li><a href="Tablitas.html">Tablas</a>
 
                     <ul class="submenu">
                         <li><a href="imc.html">Indice de Masa Corporal</a></li>
@@ -57,7 +113,7 @@
                         <li><a href="Deportista.html">Metodo Deportista</a></li>
                     </ul>
                 </li>
-            </li>
+                </li>
         </ul>
     </nav>
 
@@ -83,5 +139,72 @@
             <a href="Deportista.html" class="button">Ver fórmula</a>
         </div>
     </div>
+
+    <!-- Flecha para mostrar/ocultar la calculadora -->
+    <div class="arrow-button" onclick="toggleCalculator()">
+        <img src="flecha.png" alt="Flecha">
+    </div>
+
+    <!-- Calculadora -->
+    <div class="calculator-container" id="calculatorContainer">
+        <h2>Calculadora</h2>
+        <input type="text" class="calculator-input" id="result" disabled>
+        <div class="calculator-buttons">
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="clearCalculator()">C</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendOperator('+')">+</button>
+            <button onclick="appendOperator('-')">-</button>
+            <button onclick="appendOperator('*')">*</button>
+            <button onclick="appendOperator('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+
+        function appendNumber(number) {
+            currentInput += number;
+            updateDisplay();
+        }
+
+        function appendOperator(operator) {
+            currentInput += operator;
+            updateDisplay();
+        }
+
+        function clearCalculator() {
+            currentInput = '';
+            updateDisplay();
+        }
+
+        function calculateResult() {
+            try {
+                const result = eval(currentInput);
+                document.getElementById('result').value = result;
+            } catch (error) {
+                document.getElementById('result').value = 'Error';
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('result').value = currentInput;
+        }
+
+        function toggleCalculator() {
+            const calculator = document.getElementById('calculatorContainer');
+            calculator.style.display = calculator.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
 </body>
+
 </html>
